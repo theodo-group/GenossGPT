@@ -6,18 +6,27 @@
     <img src="./logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
 </div>
 
-# Genoss
-
 Genoss is a pioneering open-source initiative that aims to offer a seamless alternative to OpenAI models such as GPT 3.5 & 4, using open-source models like GPT4ALL.
 
-Built on FastAPI, this API service is expertly designed to yield chat completions based on specified models and questions.
+## Features
+
+- **Open-Source**: Genoss is built on top of open-source models like GPT4ALL.
+- **One Line Replacement**: Genoss is a one-line replacement for OpenAI ChatGPT API.
+
+## Supported Models
+
+- GPT4ALL Model & Embeddings
+- More models coming soon!
+
 
 ## Starting Up
 
-Before you embark, ensure Python 3.8 or higher is installed on your machine.
+Before you embark, ensure Python 3.11 or higher is installed on your machine.
 
-## Installation
+## Models Installation
 
+<details>
+<summary>Install GPT4ALL Model</summary>
 The first step is to install GPT4ALL, which is the only supported model at the moment. You can do this by following these steps:
 
 1. Clone the repository:
@@ -54,7 +63,15 @@ cd ../../gpt4all-bindings/python
 pip3 install -e .
 ```
 
+7. Download it to your local machine from [here](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) and put it in the `llm` directory as `llm/ggml-gpt4all-j-v1.3-groovy.bin`
+   
+</details>
+
 ## Running the Application
+
+```bash
+pip3 install -r requirements.txt
+```
 
 After the Python package has been installed, you can run the application. The Uvicorn ASGI server can be used to run your application:
 
@@ -66,21 +83,16 @@ This command launches the Genoss application on port 4321 of your machine.
 
 ## Genoss API Usage
 
-The Genoss API provides the `/chat/completions` endpoint for generating language completions. Two query parameters are available, `model` (for specifying the model to use for generating completions) and `question` (for the input question).
+The Genoss API is a one-line replacement for the OpenAI ChatGPT API. It supports the same parameters and returns the same response format as the OpenAI API.
 
-```bash
-curl -X 'POST' \
-  'http://localhost:4321/chat/completions?model=gpt4all&question=What%20is%20the%20color%20of%20the%20sky%20%3F' \
-  -H 'accept: application/json' \
-  -d ''
-```
+Simply replace the OpenAI API endpoint with the Genoss API endpoint and you're good to go!
 
-### Responses
+Modify the models to the supported list of models and you're good to go!
 
-- 200: Successful Response. Returns the completion as a JSON string.
-- 422: Validation Error. An error indicates that the provided input parameters are incorrect.
+You can find the API documentation at `/docs` or `/redoc`.
 
-For more detailed API documentation, please consult the OpenAPI specification at `/openapi.json`.
+![](2023-07-17-23-46-34.png)
+
 
 ## Upcoming Developments
 
@@ -92,4 +104,4 @@ Your contributions to Genoss are immensely appreciated! Feel free to submit any 
 
 ## License
 
-Genoss is licensed under the MIT License. For more details, refer to the [LICENSE](LICENSE) file.
+Genoss is licensed under the Apache2 License. For more details, refer to the [LICENSE](LICENSE) file.

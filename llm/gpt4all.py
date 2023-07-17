@@ -22,6 +22,6 @@ class gpt_4_all(LLM):
         return response["text"]
 
     def generate_embedding(self, embedding: str | list[str]):
-        gpt4all_embd = GPT4AllEmbeddings()
+        gpt4all_embd = GPT4AllEmbeddings()  # pyright: ignore reportPrivateUsage=none
         embedding_to_str = " ".join(embedding)
         return gpt4all_embd.embed_query(embedding_to_str)

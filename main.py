@@ -1,5 +1,3 @@
-import os
-
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from logger import get_logger
