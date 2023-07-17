@@ -1,4 +1,4 @@
-# Genoss AI
+# Genoss GPT
 ## One line replacement for openAI ChatGPT & Embeddings powered by OSS models
 
 
