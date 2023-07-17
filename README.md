@@ -13,6 +13,13 @@ Genoss is a pioneering open-source initiative that aims to offer a seamless alte
 - **Open-Source**: Genoss is built on top of open-source models like GPT4ALL.
 - **One Line Replacement**: Genoss is a one-line replacement for OpenAI ChatGPT API.
 
+## Demo
+
+Chat Completion and Embedding with GPT4ALL
+https://github.com/OpenGenenerativeAI/GenossGPT/assets/19614572/1f6c6739-a6c5-47d2-b78e-0f9e60a92d57
+
+
+
 ## Supported Models
 
 - GPT4ALL Model & Embeddings
