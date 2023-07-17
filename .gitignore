@@ -1,1 +1,5 @@
 Genoss/*
+.DS_Store
+.gitignore
+**.pyc
+llm/ggml-gpt4all-j-v1.3-groovy.bin
