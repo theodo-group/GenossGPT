@@ -16,7 +16,10 @@ Genoss is a pioneering open-source initiative that aims to offer a seamless alte
 ## Demo
 
 Chat Completion and Embedding with GPT4ALL
-https://github.com/OpenGenenerativeAI/GenossGPT/assets/19614572/1f6c6739-a6c5-47d2-b78e-0f9e60a92d57
+
+
+https://github.com/OpenGenenerativeAI/GenossGPT/assets/19614572/d631645a-5e51-4bd4-9acc-eb48294abeba
+
 
 
 
