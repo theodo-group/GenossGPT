@@ -1,5 +1,5 @@
 # Genoss AI
-## Private replacement for openAI ChatGPT & Embeddings powered by OSS
+## One line replacement for openAI ChatGPT & Embeddings powered by OSS models
 
 
 <div align="center">
