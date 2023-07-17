@@ -2,6 +2,7 @@ from classes.llm import LLM
 from langchain.llms.gpt4all import GPT4All
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import GPT4All
+from langchain.embeddings import GPT4AllEmbeddings
 
 
 class gpt_4_all(LLM):
@@ -20,5 +21,7 @@ class gpt_4_all(LLM):
         response = llm_chain(question)
         return response["text"]
 
-    def generate_embedding(self, prompt: str):
-        return [0.0, 0.0, 0.0]
+    def generate_embedding(self, embedding: str | list[str]):
+        gpt4all_embd = GPT4AllEmbeddings()
+        embedding_to_str = " ".join(embedding)
+        return gpt4all_embd.embed_query(embedding_to_str)

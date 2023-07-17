@@ -1,7 +1,10 @@
+from ast import List
 from fastapi import APIRouter
-from logger import getLogger
+from logger import get_logger
+from llm.gpt4all import gpt_4_all
 
-logger = getLogger(__name__)
+
+logger = get_logger(__name__)
 
 embeddings_router = APIRouter()
 
@@ -9,8 +12,15 @@ embeddings_router = APIRouter()
 @embeddings_router.post("/embeddings", tags=["Embeddings"])
 async def post_embeddings(
     model: str,
-    input: str | list[str],
-) -> str:
-    logger.info(f"Received embeddings request for {model} with input {input}")
+    input: str,
+):
+    gpt = None
+    response = None
+    if model == "gpt4all":
+        gpt = gpt_4_all(name="gpt4all")
 
-    return f"Hello from embeddings {model}!"
+    if gpt is None:
+        return List([0.0, 0.0, 0.0])
+    response = gpt.generate_embedding(input)
+
+    return response
