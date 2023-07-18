@@ -10,8 +10,8 @@ completions_router = APIRouter()
 
 @completions_router.post("/chat/completions", tags=["Chat Completions"])
 async def post_chat_completions(
-    model: str,  # make union of all models
     question: str,
+    model: str = "gpt4all",  # make union of all models
 ) -> str:
     gpt = None
     response = None
