@@ -34,11 +34,10 @@ if prompt := st.chat_input():
     if openai_api_endpoint == "http://localhost:4321":
         openai.api_base = openai_api_endpoint
         response = openai.ChatCompletion.create(
-            deployment_id="deployment-name",
             model="gpt-3.5-turbo",
-            messages=prompt,
+            messages=st.session_state.messages,
         )
-        msg = response
+        msg = response.choices[0].message
         st.empty()
     else:
         openai.api_base = openai_api_endpoint
