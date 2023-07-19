@@ -1,12 +1,10 @@
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 from logger import get_logger
-from routes.completions_routes import completions_router
-from routes.embeddings_routes import embeddings_router
+from genoss.api.completions_routes import completions_router
+from genoss.api.embeddings_routes import embeddings_router
 import logging
 from fastapi.exceptions import RequestValidationError
-from llm.gpt4all import gpt_4_all
-
 
 logger = get_logger(__name__)
 

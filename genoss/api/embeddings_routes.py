@@ -1,7 +1,7 @@
 from ast import List
 from fastapi import APIRouter
 from logger import get_logger
-from llm.gpt4all import gpt_4_all
+from genoss.model.gpt4all import gpt_4_all
 
 
 logger = get_logger(__name__)
