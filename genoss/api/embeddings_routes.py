@@ -1,8 +1,7 @@
 from ast import List
 from fastapi import APIRouter
+from genoss.model.gpt4all_llm import Gpt4AllLLM
 from logger import get_logger
-from genoss.model.gpt4all_llm import Gpt4All
-
 
 logger = get_logger(__name__)
 
@@ -17,7 +16,7 @@ async def post_embeddings(
     gpt = None
     response = None
     if model == "gpt4all":
-        gpt = Gpt4All(name="gpt4all")
+        gpt = Gpt4AllLLM(name="gpt4all")
 
     if gpt is None:
         return List([0.0, 0.0, 0.0])
