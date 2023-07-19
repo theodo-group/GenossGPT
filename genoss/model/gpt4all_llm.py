@@ -7,7 +7,7 @@ import time
 from genoss.model.base_genoss_llm import BaseGenossLLM
 
 
-class gpt_4_all(BaseGenossLLM):
+class Gpt4AllLLM(BaseGenossLLM):
     name: str = "gpt4all"
     description: str = "GPT-4"
     model_path: str = "./model/ggml-gpt4all-j-v1.3-groovy.bin"
