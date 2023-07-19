@@ -107,6 +107,17 @@ You can find the API documentation at `/docs` or `/redoc`.
 
 While GPT4ALL is the only model currently supported, we are planning to add more models in the future. So, stay tuned for more exciting updates.
 
+The vision:
+
+- Allow LLM models to be ran locally
+- Allow LLM to be ran locally using HuggingFace
+- ALlow LLM to be ran on HuggingFace and just be a wrapper around the inference API.
+- Allow easy installation of LLM models locally
+- Allow users management with API keys
+- Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
+- Be compatible with OpenAI API for models that are compatible with OpenAI API
+
+
 ## Contributions
 
 Your contributions to Genoss are immensely appreciated! Feel free to submit any issues or pull requests.
