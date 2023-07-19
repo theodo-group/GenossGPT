@@ -1,15 +1,16 @@
-from classes.llm import LLM
-from langchain.llms.gpt4all import GPT4All
+from __future__ import annotations
+
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import GPT4All
 from langchain.embeddings import GPT4AllEmbeddings
 import time
+from genoss.model.base_genoss_llm import BaseGenossLLM
 
 
-class gpt_4_all(LLM):
+class gpt_4_all(BaseGenossLLM):
     name: str = "gpt4all"
     description: str = "GPT-4"
-    model_path: str = "./llm/ggml-gpt4all-j-v1.3-groovy.bin"
+    model_path: str = "./model/ggml-gpt4all-j-v1.3-groovy.bin"
 
     def generate_answer(self, messages: list):
         print("Generating Answer")
