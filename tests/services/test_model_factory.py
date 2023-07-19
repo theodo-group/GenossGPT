@@ -1,6 +1,6 @@
 import unittest
 
-from genoss.model.fake_llm import FakeLLM
+from genoss.model.fake_llm import FakeLLM, FAKE_LLM_NAME
 from genoss.model.gpt4all_llm import Gpt4AllLLM
 from genoss.services.model_factory import ModelFactory
 
@@ -11,7 +11,7 @@ class TestModelFactory(unittest.TestCase):
         self.assertIsInstance(model, Gpt4AllLLM)
 
     def test_get_model_from_name_fake(self):
-        model = ModelFactory.get_model_from_name('fake')
+        model = ModelFactory.get_model_from_name(FAKE_LLM_NAME)
         self.assertIsInstance(model, FakeLLM)
 
     def test_get_model_from_name_unknown(self):

@@ -8,9 +8,11 @@ from langchain.embeddings import GPT4AllEmbeddings, FakeEmbeddings
 import time
 from genoss.model.base_genoss_llm import BaseGenossLLM
 
+FAKE_LLM_NAME = "fake"
+
 
 class FakeLLM(BaseGenossLLM):
-    name: str = "fake"
+    name: str = FAKE_LLM_NAME
     description: str = "Fake LLM for testing purpose"
     model_path: str = ""
 
@@ -40,7 +42,7 @@ class FakeLLM(BaseGenossLLM):
                 "prompt_tokens": len(last_message),  # This is a simplification
                 "completion_tokens": len(answer),  # This is a simplification
                 "total_tokens": len(last_message)
-                + len(answer),  # This is a simplification
+                                + len(answer),  # This is a simplification
             },
             "choices": [
                 {
