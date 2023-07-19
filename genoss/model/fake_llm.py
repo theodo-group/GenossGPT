@@ -1,25 +1,25 @@
 from __future__ import annotations
+import uuid
+from typing import Dict
 
 from langchain import PromptTemplate, LLMChain
-from langchain.llms import GPT4All
-from langchain.embeddings import GPT4AllEmbeddings
+from langchain.llms import FakeListLLM
+from langchain.embeddings import GPT4AllEmbeddings, FakeEmbeddings
 import time
 from genoss.model.base_genoss_llm import BaseGenossLLM
 
 
-class gpt_4_all(BaseGenossLLM):
-    name: str = "gpt4all"
-    description: str = "GPT-4"
-    model_path: str = "./model/ggml-gpt4all-j-v1.3-groovy.bin"
+class FakeLLM(BaseGenossLLM):
+    name: str = "fake"
+    description: str = "Fake LLM for testing purpose"
+    model_path: str = ""
 
-    def generate_answer(self, messages: list):
+    def generate_answer(self, messages: list) -> Dict:
         print("Generating Answer")
         print(messages)
         last_message = messages
 
-        llm = GPT4All(
-            model=self.model_path,  # pyright: ignore reportPrivateUsage=none
-        )
+        llm = FakeListLLM(responses=["Hello from FakeLLM!"])
         prompt_template = "Question from user: {question}?, Answer from bot:"
         llm_chain = LLMChain(
             llm=llm, prompt=PromptTemplate.from_template(prompt_template)
@@ -30,11 +30,12 @@ class gpt_4_all(BaseGenossLLM):
         answer = response_text["text"]
 
         # Format the response to match OpenAI's format
+        unique_id = uuid.uuid4()
         response = {
-            "id": "chatcmpl-abc123",  # You might want to generate a unique ID here
+            "id": unique_id,  # You might want to generate a unique ID here
             "object": "chat.completion",
             "created": int(time.time()),  # This gets the current Unix timestamp
-            "model": "gpt4all",
+            "model": self.name,
             "usage": {
                 "prompt_tokens": len(last_message),  # This is a simplification
                 "completion_tokens": len(answer),  # This is a simplification
@@ -52,7 +53,6 @@ class gpt_4_all(BaseGenossLLM):
 
         return response
 
-    def generate_embedding(self, embedding: str | list[str]):
-        gpt4all_embd = GPT4AllEmbeddings()  # pyright: ignore reportPrivateUsage=none
-        embedding_to_str = " ".join(embedding)
-        return gpt4all_embd.embed_query(embedding_to_str)
+    def generate_embedding(self, text: str):
+        model = FakeEmbeddings()
+        return model.embed_query(text)
