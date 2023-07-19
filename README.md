@@ -118,7 +118,7 @@ The vision:
 - Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
 - Be compatible with OpenAI API for models that are compatible with OpenAI API
 
-![](2023-07-19-23-44-08.png)
+ ![](2023-07-19-23-54-47.png)
 
 ## Contributions
 
