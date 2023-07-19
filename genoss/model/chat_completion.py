@@ -3,7 +3,7 @@ from typing import Dict, Any
 import time
 import uuid
 
-from genoss.api.completions_routes import Message
+from genoss.model.messages import Message
 
 
 class Choice:
