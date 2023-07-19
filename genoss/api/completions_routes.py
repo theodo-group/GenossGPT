@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Body, HTTPException
+
+from genoss.model.messages import Message
 from genoss.services.model_factory import ModelFactory
 from logger import get_logger
 from typing import List, Dict, Optional
@@ -7,11 +9,6 @@ from pydantic import BaseModel
 logger = get_logger(__name__)
 
 completions_router = APIRouter()
-
-
-class Message(BaseModel):
-    role: str
-    content: str
 
 
 class RequestBody(BaseModel):
