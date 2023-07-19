@@ -113,11 +113,12 @@ The vision:
 - Allow LLM to be ran locally using HuggingFace
 - ALlow LLM to be ran on HuggingFace and just be a wrapper around the inference API.
 - Allow easy installation of LLM models locally
+- Allow users to use cloud provider solutions such as GCP, AWS, Azure, etc ...
 - Allow users management with API keys
 - Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
 - Be compatible with OpenAI API for models that are compatible with OpenAI API
 
-![](2023-07-19-22-31-24.png)
+![](2023-07-19-23-44-08.png)
 
 ## Contributions
 
