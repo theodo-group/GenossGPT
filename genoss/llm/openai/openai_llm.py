@@ -19,7 +19,7 @@ class OpenAILLM(BaseGenossLLM):
     openai_api_key: Optional[str] = Field(None)
 
     def __init__(self, model_name: str, api_key, *args, **kwargs):
-        super().__init__(name=self.name, description=self.description, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         if api_key is None:
             raise ValueError("API key missing")

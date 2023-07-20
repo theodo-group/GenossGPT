@@ -13,7 +13,9 @@ OPENAI_NAME_LIST = ["gpt-4", "gpt-3.5-turbo"]
 
 class ModelFactory:
     @staticmethod
-    def get_model_from_name(name: str, api_key) -> Optional[BaseGenossLLM]:
+    def get_model_from_name(
+        name: str, api_key: Optional[str] = None
+    ) -> Optional[BaseGenossLLM]:
         if name.lower() in OPENAI_NAME_LIST:
             return OpenAILLM(model_name=name, api_key=api_key)
         if name.lower() == "gpt4all":
