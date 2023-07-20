@@ -30,7 +30,7 @@ class OpenAILLM(BaseGenossLLM):
     def generate_answer(self, question: str) -> Dict:
         print("Generating Answer")
 
-        llm = OpenAIChat(model=self.model_name, openai_api_key=self.openai_api_key)
+        llm = OpenAIChat(model_name=self.model_name, openai_api_key=self.openai_api_key)
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
