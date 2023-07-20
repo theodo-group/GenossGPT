@@ -2,7 +2,7 @@ import time
 import uuid
 from typing import Any, Dict
 
-from genoss.entities.chat.messages import Message
+from genoss.entities.chat.message import Message
 
 
 class ChatCompletion:

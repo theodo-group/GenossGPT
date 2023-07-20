@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from pydantic import BaseModel, Field
 
@@ -15,13 +15,3 @@ class Message(BaseModel):
 
     def to_dict(self) -> Dict[str, Any]:
         return {"role": self.role, "content": self.content}
-
-
-class Messages(BaseModel):
-    messages: List[Message]
-
-    def to_dict(self) -> List[Dict[str, Any]]:
-        return [message.to_dict() for message in self.messages]
-
-    def __getitem__(self, index):
-        return self.messages[index]

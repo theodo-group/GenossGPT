@@ -1,5 +1,4 @@
 from __future__ import annotations
-from tkinter.messagebox import QUESTION
 
 from typing import Dict
 
@@ -8,8 +7,8 @@ from langchain.embeddings import GPT4AllEmbeddings
 from langchain.llms import GPT4All
 
 from genoss.entities.chat.chat_completion import ChatCompletion
-from genoss.model.llm.local.base_local import BaseLocalLLM
-from genoss.model.prompts.prompt_template import prompt_template
+from genoss.llm.local.base_local import BaseLocalLLM
+from genoss.prompts.prompt_template import prompt_template
 
 
 class Gpt4AllLLM(BaseLocalLLM):
@@ -25,11 +24,11 @@ class Gpt4AllLLM(BaseLocalLLM):
         )
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
-        response_text = llm_chain(QUESTION)
+        response_text = llm_chain(question)
         print("###################")
         print(response_text)
         answer = response_text["text"]
-        # TODO: fix, chat completion expects a list but message is a string...
+
         chat_completion = ChatCompletion(
             model=self.name, question=question, answer=answer
         )
