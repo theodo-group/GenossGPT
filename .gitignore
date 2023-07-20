@@ -1,6 +1,7 @@
-Genoss/*
 .DS_Store
-.gitignore
 **.pyc
-genoss/model/ggml-gpt4all-j-v1.3-groovy.bin
-llm/ggml-gpt4all-j-v1.3-groovy.bin
+
+local_models/*
+
+.env
+

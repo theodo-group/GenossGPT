@@ -4,8 +4,8 @@ from typing import Dict
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import FakeListLLM
 from langchain.embeddings import FakeEmbeddings
-from genoss.model.base_genoss_llm import BaseGenossLLM
-from genoss.chat.chat_completion import ChatCompletion
+from genoss.model.llm.base_genoss_llm import BaseGenossLLM
+from genoss.model.chat_entities.chat_completion import ChatCompletion
 
 FAKE_LLM_NAME = "fake"
 

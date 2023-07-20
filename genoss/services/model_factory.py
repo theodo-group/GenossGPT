@@ -1,8 +1,8 @@
 from typing import Optional
-from genoss.model.base_genoss_llm import BaseGenossLLM
-from genoss.model.fake_llm import FakeLLM, FAKE_LLM_NAME
-from genoss.model.gpt4all_llm import Gpt4AllLLM
-from genoss.model.openai_llm import OpenAILLM
+from genoss.llm.base_genoss_llm import BaseGenossLLM
+from genoss.llm.fake_llm import FakeLLM, FAKE_LLM_NAME
+from genoss.llm.local.gpt4all_llm import Gpt4AllLLM
+from genoss.llm.openai.openai_llm import OpenAILLM
 
 OPENAI_NAME_LIST = ["gpt-4", "gpt-3.5-turbo"]
 

@@ -5,8 +5,8 @@ from typing import Dict
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import GPT4All
 from langchain.embeddings import GPT4AllEmbeddings
-from genoss.model.base_genoss_llm import BaseGenossLLM
-from genoss.chat.chat_completion import ChatCompletion
+from genoss.model.llm.base_genoss_llm import BaseGenossLLM
+from genoss.model.chat_entities.chat_completion import ChatCompletion
 
 
 class Gpt4AllLLM(BaseGenossLLM):
