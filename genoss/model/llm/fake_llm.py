@@ -1,11 +1,13 @@
 from __future__ import annotations
+
 from typing import Dict
 
-from langchain import PromptTemplate, LLMChain
-from langchain.llms import FakeListLLM
+from langchain import LLMChain, PromptTemplate
 from langchain.embeddings import FakeEmbeddings
+from langchain.llms import FakeListLLM
+
+from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.model.llm.base_genoss_llm import BaseGenossLLM
-from genoss.model.chat_entities.chat_completion import ChatCompletion
 
 FAKE_LLM_NAME = "fake"
 
@@ -29,7 +31,9 @@ class FakeLLM(BaseGenossLLM):
         print("###################")
         print(response_text)
         answer = response_text["text"]
-        chat_completion = ChatCompletion(model=self.name, answer=answer, last_messages=last_messages)
+        chat_completion = ChatCompletion(
+            model=self.name, answer=answer, last_messages=last_messages
+        )
 
         return chat_completion.to_dict()
 
