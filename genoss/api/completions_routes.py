@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Body, HTTPException
+from typing import Dict, List, Optional
 
-from genoss.chat.messages import Message
+from fastapi import APIRouter, Body, HTTPException
+from pydantic import BaseModel
+
+from genoss.entities.chat.messages import Message
 from genoss.services.model_factory import ModelFactory
 from logger import get_logger
-from typing import List, Dict, Optional
-from pydantic import BaseModel
 
 logger = get_logger(__name__)
 

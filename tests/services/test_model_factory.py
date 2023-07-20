@@ -1,8 +1,8 @@
 import unittest
 
-from genoss.model.fake_llm import FakeLLM, FAKE_LLM_NAME
-from genoss.model.gpt4all_llm import Gpt4AllLLM
-from genoss.model.openai_llm import OpenAILLM
+from genoss.llm.fake_llm import FakeLLM, FAKE_LLM_NAME
+from genoss.llm.local.gpt4all_llm import Gpt4AllLLM
+from genoss.llm.openai.openai_llm import OpenAILLM
 from genoss.services.model_factory import ModelFactory
 
 
