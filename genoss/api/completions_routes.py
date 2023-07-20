@@ -22,9 +22,10 @@ class RequestBody(BaseModel):
 
 @completions_router.post("/chat/completions", tags=["Chat Completions"])
 async def post_chat_completions(
-    body: RequestBody = Body(...), api_key=Depends(AuthHandler.check_auth_header)
+    body: RequestBody = Body(...),
+    api_key=Depends(AuthHandler.check_auth_header, use_cache=False),
 ) -> Dict:
-    model = ModelFactory.get_model_from_name(body.model, api_key)
+    model = ModelFactory.get_model_from_name(body.model, api_key)  # pyright: ignore
 
     if model is None:
         raise HTTPException(status_code=404, detail="Model not found")
