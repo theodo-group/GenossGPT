@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 
-from langchain import LLMChain, PromptTemplate
+from langchain import LLMChain
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.llms import OpenAIChat
 from pydantic import Field
@@ -19,7 +19,7 @@ class OpenAILLM(BaseGenossLLM):
     openai_api_key: Optional[str] = Field(None)
 
     def __init__(self, model_name: str, api_key, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(name=self.name, description=self.description, *args, **kwargs)
 
         if api_key is None:
             raise ValueError("API key missing")
@@ -30,7 +30,7 @@ class OpenAILLM(BaseGenossLLM):
     def generate_answer(self, question: str) -> Dict:
         print("Generating Answer")
 
-        llm = OpenAIChat(model_name=self.model_name, openai_api_key=self.openai_api_key)
+        llm = OpenAIChat(model=self.model_name, openai_api_key=self.openai_api_key)
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
