@@ -2,17 +2,18 @@ from __future__ import annotations
 
 from typing import Dict
 
-from langchain import PromptTemplate, LLMChain
-from langchain.llms import GPT4All
+from langchain import LLMChain, PromptTemplate
 from langchain.embeddings import GPT4AllEmbeddings
+from langchain.llms import GPT4All
+
+from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.model.llm.base_genoss_llm import BaseGenossLLM
-from genoss.model.chat_entities.chat_completion import ChatCompletion
 
 
 class Gpt4AllLLM(BaseGenossLLM):
     name: str = "gpt4all"
     description: str = "GPT-4"
-    model_path: str = "./genoss/model/ggml-gpt4all-j-v1.3-groovy.bin"
+    model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"
 
     def generate_answer(self, messages: list) -> Dict:
         print("Generating Answer")
