@@ -15,6 +15,8 @@ class ModelFactory:
             return OpenAILLM()
         if name.lower() == "gpt4all":
             return Gpt4AllLLM()
+        if name.lower().startswith("falcon"):
+            return HuggingFaceHubFalconLLM(api_key=api_key)
         elif name == FAKE_LLM_NAME:
             return FakeLLM()
         return None

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from tkinter.messagebox import QUESTION
 
 from typing import Dict
 
@@ -16,21 +17,21 @@ class Gpt4AllLLM(BaseLocalLLM):
     description: str = "GPT-4"
     model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"
 
-    def generate_answer(self, message: str) -> Dict:
+    def generate_answer(self, question: str) -> Dict:
         print("Generating Answer")
-        print(message)
 
         llm = GPT4All(
             model=self.model_path,  # pyright: ignore reportPrivateUsage=none
         )
+
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
-        response_text = llm_chain(message)
+        response_text = llm_chain(QUESTION)
         print("###################")
         print(response_text)
         answer = response_text["text"]
-        #TODO: fix, chat completion expects a list but message is a string...
+        # TODO: fix, chat completion expects a list but message is a string...
         chat_completion = ChatCompletion(
-            model=self.name, answer=answer, last_messages=message
+            model=self.name, question=question, answer=answer
         )
 
         return chat_completion.to_dict()
