@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body, HTTPException
 
-from genoss.model.messages import Message
+from genoss.chat.messages import Message
 from genoss.services.model_factory import ModelFactory
 from logger import get_logger
 from typing import List, Dict, Optional
