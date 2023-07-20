@@ -1,11 +1,11 @@
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.params import Depends
 from pydantic import BaseModel
 
 from genoss.auth.auth_handler import AuthHandler
-from genoss.entities.chat.messages import Messages
+from genoss.entities.chat.message import Message
 from genoss.services.model_factory import ModelFactory
 from logger import get_logger
 
@@ -16,7 +16,7 @@ completions_router = APIRouter()
 
 class RequestBody(BaseModel):
     model: str
-    messages: Messages
+    messages: List[Message]
     temperature: Optional[float]
 
 

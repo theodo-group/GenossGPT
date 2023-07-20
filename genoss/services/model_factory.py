@@ -12,10 +12,14 @@ class ModelFactory:
     @staticmethod
     def get_model_from_name(name: str) -> Optional[BaseGenossLLM]:
         if name.lower() in OPENAI_NAME_LIST:
-            return OpenAILLM()
+            return OpenAILLM(model_name=name, api_key=api_key)
         if name.lower() == "gpt4all":
             return Gpt4AllLLM()
-        if name.lower().startswith("falcon"):
+        if name.lower().startswith("hf-llama2"):
+            return HuggingFaceHubLlama2LLM(api_key=api_key)
+        if name.lower().startswith("hf-gpt2"):
+            return HuggingFaceHubGPT2LLM(api_key=api_key)
+        if name.lower().startswith("hf-falcon"):
             return HuggingFaceHubFalconLLM(api_key=api_key)
         elif name == FAKE_LLM_NAME:
             return FakeLLM()

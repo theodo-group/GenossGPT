@@ -2,7 +2,7 @@ from pathlib import Path
 
 from pydantic import validator
 
-from genoss.model.llm.base_genoss import BaseGenossLLM
+from genoss.llm.base_genoss import BaseGenossLLM
 
 
 class BaseLocalLLM(BaseGenossLLM):
