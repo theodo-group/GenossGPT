@@ -7,10 +7,10 @@ from langchain.embeddings import GPT4AllEmbeddings
 from langchain.llms import GPT4All
 
 from genoss.entities.chat.chat_completion import ChatCompletion
-from genoss.model.llm.base_genoss_llm import BaseGenossLLM
+from genoss.model.llm.local.base_local import BaseLocalLLM
 
 
-class Gpt4AllLLM(BaseGenossLLM):
+class Gpt4AllLLM(BaseLocalLLM):
     name: str = "gpt4all"
     description: str = "GPT-4"
     model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"

@@ -7,7 +7,6 @@ from pydantic import BaseModel
 class BaseGenossLLM(BaseModel):
     name: str
     description: str
-    model_path: str
 
     @abstractmethod
     def generate_answer(self, prompt: str) -> Dict:

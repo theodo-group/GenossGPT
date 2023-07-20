@@ -7,7 +7,7 @@ from langchain.embeddings import FakeEmbeddings
 from langchain.llms import FakeListLLM
 
 from genoss.entities.chat.chat_completion import ChatCompletion
-from genoss.model.llm.base_genoss_llm import BaseGenossLLM
+from genoss.model.llm.base_genoss import BaseGenossLLM
 
 FAKE_LLM_NAME = "fake"
 
@@ -15,7 +15,6 @@ FAKE_LLM_NAME = "fake"
 class FakeLLM(BaseGenossLLM):
     name: str = FAKE_LLM_NAME
     description: str = "Fake LLM for testing purpose"
-    model_path: str = ""
 
     def generate_answer(self, messages: list) -> Dict:
         print("Generating Answer")
