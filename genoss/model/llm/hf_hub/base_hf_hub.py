@@ -1,4 +1,4 @@
-from genoss.model.llm.base_genoss_llm import BaseGenossLLM
+from genoss.model.llm.base_genoss import BaseGenossLLM
 
 
 class BaseHuggingFaceHubLLM(BaseGenossLLM):
