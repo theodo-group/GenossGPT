@@ -20,6 +20,6 @@ class TestModelFactory(unittest.TestCase):
         self.assertIsInstance(model, FakeLLM)
 
     def test_get_model_from_name_unknown(self):
-        model = ModelFactory.get_model_from_name('unknown')
+        model = ModelFactory.get_model_from_name("unknown")
         self.assertIsNone(model)
 
