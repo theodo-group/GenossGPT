@@ -36,14 +36,12 @@ class ChatCompletion:
                 "total_tokens": self.total_tokens,
             }
 
-    def __init__(self, model: str, last_messages: list, answer: str):
+    def __init__(self, model: str, question: str, answer: str):
         self.id = str(uuid.uuid4())
         self.object = "chat.completion"
         self.created = int(time.time())
         self.model = model
-        self.usage = self.Usage(
-            len(last_messages), len(answer), len(last_messages) + len(answer)
-        )
+        self.usage = self.Usage(len(question), len(answer), len(question) + len(answer))
         self.choices = [
             self.Choice(Message(role="assistant", content=answer), "stop", 0)
         ]
