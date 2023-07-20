@@ -3,7 +3,7 @@ from typing import Dict, Any
 import time
 import uuid
 
-from genoss.model.messages import Message
+from genoss.chat.messages import Message
 
 
 class Choice:
