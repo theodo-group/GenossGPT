@@ -12,7 +12,7 @@ from genoss.chat.chat_completion import ChatCompletion
 class Gpt4AllLLM(BaseGenossLLM):
     name: str = "gpt4all"
     description: str = "GPT-4"
-    model_path: str = "./model/ggml-gpt4all-j-v1.3-groovy.bin"
+    model_path: str = "./genoss/model/ggml-gpt4all-j-v1.3-groovy.bin"
 
     def generate_answer(self, messages: list) -> Dict:
         print("Generating Answer")
@@ -30,7 +30,9 @@ class Gpt4AllLLM(BaseGenossLLM):
         print("###################")
         print(response_text)
         answer = response_text["text"]
-        chat_completion = ChatCompletion(model=self.name, answer=answer, last_messages=last_messages)
+        chat_completion = ChatCompletion(
+            model=self.name, answer=answer, last_messages=last_messages
+        )
 
         return chat_completion.to_dict()
 
