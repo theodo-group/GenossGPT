@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-import requests
+import openai
 import streamlit as st
 
 # Load environment variables from .env file
@@ -36,7 +36,6 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     msg = ""
 
-    print(api_key)
     # Use the user-provided API key if available, otherwise use the API key from the .env file
     if api_key == "" or api_key is None:
         api_key = api_key if api_key else (huggingface_api_key if model_name.startswith("hf") else openai_api_key)
@@ -44,23 +43,22 @@ if prompt := st.chat_input():
             st.error("Please provide an API key")
             st.stop()
 
-    headers = {"Authorization": f"Bearer {api_key}"}
+    openai.api_key = api_key
+    openai.api_base = genoss_endpoint
 
     try:
-        response = requests.post(
-            url=f"{genoss_endpoint}/chat/completions",
-            headers=headers,
-            json={
-                "model": model_name,
-                "messages": st.session_state.messages,
-            },
+        response = openai.ChatCompletion.create(
+            model=model_name,
+            messages=st.session_state.messages,
         )
-        response.raise_for_status()  # Raises stored HTTPError, if one occurred.
-        msg = response.json()['choices'][0]['message']
+        msg = response.choices[0].message
     except Exception as e:
         msg = f"Error: {e}"
 
     st.empty()
 
     st.session_state.messages.append(msg)
-    st.chat_message("assistant").write(msg["content"])
+    try:
+        st.chat_message("assistant").write(msg["content"])
+    except Exception as e:
+        st.error(f"Error: {e}, {msg}")

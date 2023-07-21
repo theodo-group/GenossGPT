@@ -32,8 +32,6 @@ class BaseHuggingFaceHubLLM(BaseGenossLLM, ABC):
         Generate answer from prompt
         """
 
-        print("Generating Answer...")
-
         llm = HuggingFaceHub(
             repo_id=self.repo_id, huggingfacehub_api_token=self.huggingfacehub_api_token
         )  # type: ignore

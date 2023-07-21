@@ -1,4 +1,6 @@
 from abc import abstractmethod
+from ast import Not
+import re
 from typing import Dict, List
 
 from pydantic import BaseModel
@@ -10,11 +12,8 @@ class BaseGenossLLM(BaseModel):
 
     @abstractmethod
     def generate_answer(self, prompt: str) -> Dict:
-        print("You need to implement the generate_answer method")
-
-        return {id: 1}
+        return NotImplementedError
 
     @abstractmethod
     def generate_embedding(self, text: str) -> List[float]:
-        print("You need to implement the generate_embedding method")
-        return [0.0, 0.0, 0.0]
+        return NotImplementedError

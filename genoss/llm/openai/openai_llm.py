@@ -10,6 +10,7 @@ from pydantic import Field
 from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.llm.base_genoss import BaseGenossLLM
 from genoss.prompts.prompt_template import prompt_template
+from langchain.chat_models import ChatOpenAI
 
 
 class OpenAILLM(BaseGenossLLM):
@@ -28,15 +29,11 @@ class OpenAILLM(BaseGenossLLM):
         self.model_name = model_name
 
     def generate_answer(self, question: str) -> Dict:
-        print("Generating Answer")
 
-        llm = OpenAIChat(model_name=self.model_name, openai_api_key=self.openai_api_key)
+        llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.openai_api_key)
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
-
-        print("###################")
-        print(response_text)
 
         answer = response_text["text"]
         chat_completion = ChatCompletion(

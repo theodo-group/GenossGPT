@@ -17,7 +17,6 @@ class Gpt4AllLLM(BaseLocalLLM):
     model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"
 
     def generate_answer(self, question: str) -> Dict:
-        print("Generating Answer")
 
         llm = GPT4All(
             model=self.model_path,  # pyright: ignore reportPrivateUsage=none
@@ -25,8 +24,7 @@ class Gpt4AllLLM(BaseLocalLLM):
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
-        print("###################")
-        print(response_text)
+
         answer = response_text["text"]
 
         chat_completion = ChatCompletion(
