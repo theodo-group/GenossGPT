@@ -18,15 +18,11 @@ class FakeLLM(BaseGenossLLM):
     description: str = "Fake LLM for testing purpose"
 
     def generate_answer(self, question: str) -> Dict:
-        print("Generating Answer")
 
         llm = FakeListLLM(responses=["Hello from FakeLLM!"])
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
-
-        print("###################")
-        print(response_text)
 
         answer = response_text["text"]
         chat_completion = ChatCompletion(
