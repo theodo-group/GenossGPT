@@ -5,18 +5,15 @@ import streamlit as st
 
 # Load environment variables from .env file
 load_dotenv()
-
+api_key = None
 # Get API keys from environment variables
 huggingface_api_key = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 with st.sidebar:
-    api_key = st.text_input(
-        "API Key", key="chatbot_api_key", type="password"
-    )
     model_name = st.selectbox(
         "Chat API Endpoint",
-        options=["gpt-4", "hf-gpt2"],
+        options=["gpt-4", "hf-gpt2", "hf-llama2"],
         index=0,
     )
 
@@ -37,11 +34,14 @@ if prompt := st.chat_input():
     msg = ""
 
     # Use the user-provided API key if available, otherwise use the API key from the .env file
+    api_key = (
+        api_key
+        if api_key
+        else (huggingface_api_key if model_name.startswith("hf") else openai_api_key)
+    )
     if api_key == "" or api_key is None:
-        api_key = api_key if api_key else (huggingface_api_key if model_name.startswith("hf") else openai_api_key)
-        if api_key == "" or api_key is None:
-            st.error("Please provide an API key")
-            st.stop()
+        st.error("Please provide an API key")
+        st.stop()
 
     openai.api_key = api_key
     openai.api_base = genoss_endpoint
