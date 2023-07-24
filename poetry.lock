@@ -629,7 +629,7 @@ tqdm = ["tqdm"]
 name = "gpt4all"
 version = "1.0.6"
 description = "Python bindings for GPT4All"
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "gpt4all-1.0.6-py3-none-macosx_10_9_universal2.whl", hash = "sha256:5b77ddfc80f7aeb4a937a9519149c51a3a0c4ae88850f3a0177c76f7b3030513"},
@@ -2976,4 +2976,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c90960597be7dbb394083985846181eb29e15426722e4dfed52de1eef37e72c5"
+content-hash = "1fd233c970d37d22a4394523a16bfeee134a23dffd814b32f6becbda902cd828"

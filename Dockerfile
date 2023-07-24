@@ -1,20 +1,54 @@
-# Use the same base image as the 'backend-core' container
-FROM python:3.11-bullseye
+# Docker multi-stage building, as recommended by https://fastapi.tiangolo.com/deployment/docker/#docker-image-with-poetry
+FROM python:3.11.3-slim-buster as curl-stage
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y liblzma-dev cmake git
+# Install curl ; remove apt cache to reduce image size
+RUN apt-get -y update && apt-get -y install curl liblzma-dev cmake git && rm -rf /var/lib/apt/lists/*
+RUN pip install --upgrade pip
 
-# Set the working directory
+FROM curl-stage as poetry-requirements-stage
+
+ARG poetry_groups=main,llms
+
+WORKDIR /tmp
+
+ENV HOME /root
+ENV PATH=${PATH}:$HOME/.local/bin
+
+# Install poetry
+RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.5.1 python3 -
+
+# Export requirements.txt
+COPY ./pyproject.toml ./poetry.lock* /tmp/
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --no-interaction --no-cache --only=${poetry_groups}
+
+
+FROM curl-stage
 WORKDIR /app
 
-# Copy the requirements file
-COPY ./requirements.txt /app/requirements.txt
+ENV \
+    # Prevent Python from buffering stdout and stderr and loosing some logs (equivalent to python -u option)
+    PYTHONUNBUFFERED=1 \
+    # Prevent Pip from timing out when installing heavy dependencies
+    PIP_DEFAULT_TIMEOUT=600 \
+    # Prevent Pip from creating a cache directory to reduce image size
+    PIP_NO_CACHE_DIR=1
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r /app/requirements.txt --timeout 100
+ENV UVICORN_HOST="0.0.0.0" \
+    UVICORN_PORT=4321
 
-# Copy your application's code to the Docker container
+# Install dependencies with pip from exported requirements.txt
+COPY --from=poetry-requirements-stage /tmp/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+# Copy API files
 COPY . /app
 
-# Start the Uvicorn server on port 5051
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "4321"]
+# Add and set a non-root user
+RUN useradd appuser
+USER appuser
+
+# Start FastAPI
+CMD ["uvicorn", "main:app"]
+
+# Healthcheck
+HEALTHCHECK --interval=10s --timeout=1s --retries=3 CMD curl --fail http://localhost:${PORT}/ || exit 1

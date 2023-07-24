@@ -19,7 +19,7 @@ langchain = "^0.0.240"
 tiktoken = "^0.4.0"
 transformers = "^4.31.0"
 sentence-transformers = "^2.2.2"
-gpt4all = "^1.0.6"
+gpt4all = { version = "^1.0.6", optional = true }
 huggingface-hub = "^0.16.4"
 
 [tool.poetry.group.dev.dependencies]
