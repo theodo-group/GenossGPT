@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Any
 
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.params import Depends
@@ -16,15 +16,18 @@ completions_router = APIRouter()
 
 class RequestBody(BaseModel):
     model: str
-    messages: List[Message]
-    temperature: Optional[float]
+    messages: list[Message]
+    temperature: float | None
 
 
 @completions_router.post("/chat/completions", tags=["Chat Completions"])
 async def post_chat_completions(
-    body: RequestBody = Body(...),
-    api_key=Depends(AuthHandler.check_auth_header, use_cache=False),
-) -> Dict:
+    # TODO: check if this is the correct way to use Body & Depends
+    body: RequestBody = Body(...),  # noqa: B008
+    api_key: str = Depends(  # type: ignore[assignment] # noqa: B008
+        AuthHandler.check_auth_header, use_cache=False
+    ),
+) -> dict[str, Any]:
     model = ModelFactory.get_model_from_name(body.model, api_key)  # pyright: ignore
 
     if model is None:

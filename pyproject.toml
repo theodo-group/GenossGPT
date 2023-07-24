@@ -88,6 +88,13 @@ ignore = [
     # -> would imply to update tests every time you update exception message
     "SIM102", # "Use a single `if` statement instead of nested `if` statements"
     # -> too restrictive
+    # TODO: temporary remove missing docstring rules
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D106",
+    "D107",
 ]
 
 [tool.ruff.pydocstyle]
@@ -115,6 +122,9 @@ runtime-evaluated-base-classes = ["pydantic.BaseModel"]
 
 [tool.mypy]
 python_version = "3.11"
+plugins = [
+  "pydantic.mypy"
+]
 # Enable all optional error checking flags, providing stricter type checking; see https://mypy.readthedocs.io/en/stable/getting_started.html#strict-mode-and-configuration
 strict = true
 

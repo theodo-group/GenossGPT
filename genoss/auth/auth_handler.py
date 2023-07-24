@@ -1,13 +1,13 @@
-from typing import Optional
-
 from fastapi import Header, HTTPException
 
 
 class AuthHandler:
     @staticmethod
     async def check_auth_header(
-        authorization: Optional[str] = Header(None),
-    ):
+        # TODO: check if this is the correct way to use Header
+        authorization: str
+        | None = Header(None),  # noqa: B008
+    ) -> str | None:
         if authorization is None:
             return None
 

@@ -1,5 +1,3 @@
-from ast import List
-
 from fastapi import APIRouter
 
 from genoss.llm.local.gpt4all import Gpt4AllLLM
@@ -14,14 +12,13 @@ embeddings_router = APIRouter()
 async def post_embeddings(
     model: str,
     input: str,
-):
+) -> list[float]:
     gpt = None
-    response = None
     if model == "gpt4all":
         gpt = Gpt4AllLLM(name="gpt4all")
 
     if gpt is None:
-        return List([0.0, 0.0, 0.0])
+        return [0.0, 0.0, 0.0]
     response = gpt.generate_embedding(input)
 
     return response

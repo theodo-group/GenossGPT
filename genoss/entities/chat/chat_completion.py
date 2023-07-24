@@ -1,6 +1,6 @@
 import time
 import uuid
-from typing import Any, Dict
+from typing import Any
 
 from genoss.entities.chat.message import Message
 
@@ -14,7 +14,7 @@ class ChatCompletion:
             self.finish_reason = finish_reason
             self.index = index
 
-        def to_dict(self) -> Dict[str, Any]:
+        def to_dict(self) -> dict[str, Any]:
             return {
                 "message": self.message.to_dict(),
                 "finish_reason": self.finish_reason,
@@ -29,7 +29,7 @@ class ChatCompletion:
             self.completion_tokens = completion_tokens
             self.total_tokens = total_tokens
 
-        def to_dict(self) -> Dict[str, Any]:
+        def to_dict(self) -> dict[str, Any]:
             return {
                 "prompt_tokens": self.prompt_tokens,
                 "completion_tokens": self.completion_tokens,
@@ -46,7 +46,7 @@ class ChatCompletion:
             self.Choice(Message(role="assistant", content=answer), "stop", 0)
         ]
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "id": self.id,
             "object": self.object,

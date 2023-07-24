@@ -8,5 +8,5 @@ misc_router = APIRouter()
 
 
 @misc_router.get("/", tags=["Root"])
-async def get_root():
+async def get_root() -> str:
     return "Genoss API is running!"
