@@ -22,6 +22,11 @@ sentence-transformers = "^2.2.2"
 gpt4all = { version = "^1.0.6", optional = true }
 huggingface-hub = "^0.16.4"
 
+[tool.poetry.group.streamlit-demo.dependencies]
+openai = "^0.27.8"
+python-dotenv = "^1.0.0"
+streamlit = "^1.25.0"
+
 [tool.poetry.group.dev.dependencies]
 black = "^22"
 mypy = "^1.2"
