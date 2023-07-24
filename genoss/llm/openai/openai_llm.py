@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 
 from langchain import LLMChain
+from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.llms import OpenAIChat
 from pydantic import Field
@@ -10,7 +11,6 @@ from pydantic import Field
 from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.llm.base_genoss import BaseGenossLLM
 from genoss.prompts.prompt_template import prompt_template
-from langchain.chat_models import ChatOpenAI
 
 
 class OpenAILLM(BaseGenossLLM):
