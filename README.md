@@ -3,7 +3,7 @@
 
 
 <div align="center">
-    <img src="./logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
+    <img src="doc/assets/logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
 </div>
 
 Genoss is a pioneering open-source initiative that aims to offer a seamless alternative to OpenAI models such as GPT 3.5 & 4, using open-source models like GPT4ALL.
@@ -73,13 +73,18 @@ pip3 install -e .
 ```
 
 7. Download it to your local machine from [here](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) and put it in the `local_models` directory as `local_models/ggml-gpt4all-j-v1.3-groovy.bin`
-   
+
 </details>
 
 ## Running the Application
-
+You need to install [poetry](https://python-poetry.org/docs/) and a valid python version (3.11*).
 ```bash
-pip3 install -r requirements.txt
+poetry install
+```
+For more, on a complete install for development purpose, you can check the [CONTRIBUTING.md](CONTRIBUTING.md).
+If you simply want to start the server, you can install with the corresponding poetry groups :
+```bash
+poetry install --only main,llms
 ```
 
 After the Python package has been installed, you can run the application. The Uvicorn ASGI server can be used to run your application:
@@ -100,7 +105,7 @@ Modify the models to the supported list of models and you're good to go!
 
 You can find the API documentation at `/docs` or `/redoc`.
 
-![](2023-07-17-23-46-34.png)
+![Screenshot of api documentation](doc/assets/2023-07-17-23-46-34.png)
 
 
 ## Upcoming Developments
@@ -118,7 +123,7 @@ The vision:
 - Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
 - Be compatible with OpenAI API for models that are compatible with OpenAI API
 
- ![](2023-07-19-23-54-47.png)
+ ![Screenshot of vision diagram](doc/assets/2023-07-19-23-54-47.png)
 
 ## Contributions
 

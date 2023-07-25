@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict
+from typing import Any
 
 from langchain import LLMChain
 from langchain.embeddings import GPT4AllEmbeddings
@@ -16,7 +16,7 @@ class Gpt4AllLLM(BaseLocalLLM):
     description: str = "GPT-4"
     model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"
 
-    def generate_answer(self, question: str) -> Dict:
+    def generate_answer(self, question: str) -> dict[str, Any]:
 
         llm = GPT4All(
             model=self.model_path,  # pyright: ignore reportPrivateUsage=none
@@ -33,7 +33,7 @@ class Gpt4AllLLM(BaseLocalLLM):
 
         return chat_completion.to_dict()
 
-    def generate_embedding(self, embedding: str | list[str]):
+    def generate_embedding(self, embedding: str | list[str]) -> list[float]:
         gpt4all_embd = GPT4AllEmbeddings()  # pyright: ignore reportPrivateUsage=none
         embedding_to_str = " ".join(embedding)
         return gpt4all_embd.embed_query(embedding_to_str)

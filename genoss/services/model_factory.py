@@ -1,5 +1,3 @@
-from typing import Optional
-
 from genoss.llm.base_genoss import BaseGenossLLM
 from genoss.llm.fake_llm import FAKE_LLM_NAME, FakeLLM
 from genoss.llm.hf_hub.falcon import HuggingFaceHubFalconLLM
@@ -14,8 +12,8 @@ OPENAI_NAME_LIST = ["gpt-4", "gpt-3.5-turbo"]
 class ModelFactory:
     @staticmethod
     def get_model_from_name(
-        name: str, api_key: Optional[str] = None
-    ) -> Optional[BaseGenossLLM]:
+        name: str, api_key: str | None = None
+    ) -> BaseGenossLLM | None:
         if name.lower() in OPENAI_NAME_LIST:
             return OpenAILLM(model_name=name, api_key=api_key)
         if name.lower() == "gpt4all":

@@ -1,0 +1,137 @@
+[tool.poetry]
+name = "genoss-gpt"
+version = "0.1.0"
+description = "Replace OpenAI GPT with any LLMs in your app with one line. Common Inference API for all LLMs either Private or Public (Anthropic, Llama, GPT, Vertex, ...)"
+authors = [
+    "mattzcarey <mattc@aleios.com>",
+    "MaximeThoonsen <maximet@theodo.fr>",
+    "StanGirard <stanislasg@theodo.fr>",
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.95.1"}
+loguru = "^0.7.0"
+uvicorn = "^0.23.1"
+
+[tool.poetry.group.llms.dependencies]
+langchain = "^0.0.240"
+tiktoken = "^0.4.0"
+transformers = "^4.31.0"
+sentence-transformers = "^2.2.2"
+gpt4all = { version = "^1.0.6", optional = true }
+huggingface-hub = "^0.16.4"
+openai = "^0.27.8"
+
+[tool.poetry.group.streamlit-demo.dependencies]
+openai = "^0.27.8"
+python-dotenv = "^1.0.0"
+streamlit = "^1.25.0"
+watchdog = "^3.0.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22"
+mypy = "^1.2"
+pre-commit = "^2"
+pytest = "^7"
+pytest-cov = "^3"
+ruff = "^0"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# Packages configs
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+## coverage
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+skip_empty = true
+fail_under = 50.00
+precision = 1
+
+## black
+
+[tool.black]
+target-version = ['py311']
+
+## ruff
+# Recommended ruff config for now, to be updated as we go along.
+[tool.ruff]
+target-version = 'py311'
+
+# See all rules at https://beta.ruff.rs/docs/rules/
+select = [
+    "E",   # pycodestyle
+    "W",   # pycodestyle
+    "F",   # Pyflakes
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "D",   # flake8-docstrings
+    "I",   # isort
+    "SIM", # flake8-simplify
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "Q",   # flake8-quotes
+    "UP",  # pyupgrade
+    "PT",  # flake8-pytest-style
+    "RUF", # Ruff-specific rules
+]
+
+ignore = [
+    "E501", # "Line too long"
+    # -> line length already regulated by black
+    "PT011", # "pytest.raises() should specify expected exception"
+    # -> would imply to update tests every time you update exception message
+    "SIM102", # "Use a single `if` statement instead of nested `if` statements"
+    # -> too restrictive
+    # TODO: temporary remove missing docstring rules
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D106",
+    "D107",
+]
+
+[tool.ruff.pydocstyle]
+# Automatically disable rules that are incompatible with Google docstring convention
+convention = "google"
+
+[tool.ruff.pycodestyle]
+max-doc-length = 88
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.flake8-type-checking]
+strict = true
+runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+# Pydantic needs to be able to evaluate types at runtime
+# see https://pypi.org/project/flake8-type-checking/ for flake8-type-checking documentation
+# see https://beta.ruff.rs/docs/settings/#flake8-type-checking-runtime-evaluated-base-classes for ruff documentation
+
+[tool.ruff.per-file-ignores]
+# Allow missing docstrings for tests
+"tests/**/*.py" = ["D100", "D103"]
+
+## mypy
+
+[tool.mypy]
+python_version = "3.11"
+plugins = [
+  "pydantic.mypy"
+]
+# Enable all optional error checking flags, providing stricter type checking; see https://mypy.readthedocs.io/en/stable/getting_started.html#strict-mode-and-configuration
+strict = true
+
+# Type-check the interiors of functions without type annotations; if missing, mypy won't check function bodies without type hints, for instance those coming from third-party libraries
+check_untyped_defs = true
+
+# Make __init__.py file optional for package definitions; if missing, mypy requires __init__.py at packages roots, see https://mypy.readthedocs.io/en/stable/running_mypy.html#mapping-file-paths-to-modules
+explicit_package_bases = true

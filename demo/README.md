@@ -1,7 +1,7 @@
 ### Installing
 
 ```bash
-pip install -r requirements.txt
+poetry install --only streamlit-demo
 ```
 
 Optional: Rename `.env.example` to `.env` and fill in the values.

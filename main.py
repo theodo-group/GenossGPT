@@ -1,13 +1,13 @@
+import logging
+
 from fastapi import FastAPI, HTTPException, Request, status
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from scipy import misc
-from logger import get_logger
+
 from genoss.api.completions_routes import completions_router
 from genoss.api.embeddings_routes import embeddings_router
 from genoss.api.misc_routes import misc_router
-
-import logging
-from fastapi.exceptions import RequestValidationError
+from logger import get_logger
 
 logger = get_logger(__name__)
 

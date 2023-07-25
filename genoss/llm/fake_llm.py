@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict
+from typing import Any
 
 from langchain import LLMChain
 from langchain.embeddings import FakeEmbeddings
@@ -17,7 +17,7 @@ class FakeLLM(BaseGenossLLM):
     name: str = FAKE_LLM_NAME
     description: str = "Fake LLM for testing purpose"
 
-    def generate_answer(self, question: str) -> Dict:
+    def generate_answer(self, question: str) -> dict[str, Any]:
 
         llm = FakeListLLM(responses=["Hello from FakeLLM!"])
 
@@ -31,6 +31,6 @@ class FakeLLM(BaseGenossLLM):
 
         return chat_completion.to_dict()
 
-    def generate_embedding(self, text: str):
-        model = FakeEmbeddings()
+    def generate_embedding(self, text: str) -> list[float]:
+        model = FakeEmbeddings(size=128)
         return model.embed_query(text)

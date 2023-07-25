@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -13,5 +13,5 @@ class Message(BaseModel):
         description="The contents of the message. content is required for all messages, and may be null for assistant messages with function calls.",
     )
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {"role": self.role, "content": self.content}

@@ -1,7 +1,8 @@
-from dotenv import load_dotenv
 import os
+
 import openai
 import streamlit as st
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
@@ -33,7 +34,8 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     msg = ""
 
-    # Use the user-provided API key if available, otherwise use the API key from the .env file
+    # Use the user-provided API key if available,
+    # otherwise use the API key from the .env file
     api_key = (
         api_key
         if api_key
@@ -53,7 +55,8 @@ if prompt := st.chat_input():
         )
         msg = response.choices[0].message
     except Exception as e:
-        msg = f"Error: {e}"
+        st.error(e)
+        st.stop()
 
     st.empty()
 
