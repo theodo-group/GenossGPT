@@ -73,13 +73,18 @@ pip3 install -e .
 ```
 
 7. Download it to your local machine from [here](https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin) and put it in the `local_models` directory as `local_models/ggml-gpt4all-j-v1.3-groovy.bin`
-   
+
 </details>
 
 ## Running the Application
-
+You need to install [poetry](https://python-poetry.org/docs/) and a valid python version (3.11*).
 ```bash
-pip3 install -r requirements.txt
+poetry install
+```
+For more, on a complete install for development purpose, you can check the [CONTRIBUTING.md](CONTRIBUTING.md).
+If you simply want to start the server, you can install with the corresponding poetry groups :
+```bash
+poetry install --only main,llms
 ```
 
 After the Python package has been installed, you can run the application. The Uvicorn ASGI server can be used to run your application:
