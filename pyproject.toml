@@ -21,6 +21,7 @@ transformers = "^4.31.0"
 sentence-transformers = "^2.2.2"
 gpt4all = { version = "^1.0.6", optional = true }
 huggingface-hub = "^0.16.4"
+openai = "^0.27.8"
 
 [tool.poetry.group.streamlit-demo.dependencies]
 openai = "^0.27.8"

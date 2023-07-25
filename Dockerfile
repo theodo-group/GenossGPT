@@ -2,7 +2,8 @@
 FROM python:3.11.3-slim-buster as curl-stage
 
 # Install curl ; remove apt cache to reduce image size
-RUN apt-get -y update && apt-get -y install curl liblzma-dev cmake git && rm -rf /var/lib/apt/lists/*
+# TODO: check if liblzma-dev is necessary
+RUN apt-get -y update && apt-get -y install curl liblzma-dev && rm -rf /var/lib/apt/lists/*
 RUN pip install --upgrade pip
 
 FROM curl-stage as poetry-requirements-stage
