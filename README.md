@@ -3,7 +3,7 @@
 
 
 <div align="center">
-    <img src="./logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
+    <img src="doc/assets/logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
 </div>
 
 Genoss is a pioneering open-source initiative that aims to offer a seamless alternative to OpenAI models such as GPT 3.5 & 4, using open-source models like GPT4ALL.
@@ -105,7 +105,7 @@ Modify the models to the supported list of models and you're good to go!
 
 You can find the API documentation at `/docs` or `/redoc`.
 
-![](2023-07-17-23-46-34.png)
+![Screenshot of api documentation](doc/assets/2023-07-17-23-46-34.png)
 
 
 ## Upcoming Developments
@@ -123,7 +123,7 @@ The vision:
 - Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
 - Be compatible with OpenAI API for models that are compatible with OpenAI API
 
- ![](2023-07-19-23-54-47.png)
+ ![Screenshot of vision diagram](doc/assets/2023-07-19-23-54-47.png)
 
 ## Contributions
 
