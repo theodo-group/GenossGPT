@@ -17,3 +17,6 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# Ignore env from demo
+demo/.env
