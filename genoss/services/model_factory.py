@@ -3,6 +3,9 @@ from genoss.llm.fake_llm import FAKE_LLM_NAME, FakeLLM
 from genoss.llm.hf_hub.falcon import HuggingFaceHubFalconLLM
 from genoss.llm.hf_hub.gpt2 import HuggingFaceHubGPT2LLM
 from genoss.llm.hf_hub.llama2 import HuggingFaceHubLlama2LLM
+from genoss.llm.hf_inference_endpoint.hf_inference_endpoint import (
+    HuggingFaceInferenceEndpointLLM,
+)
 from genoss.llm.local.gpt4all import Gpt4AllLLM
 from genoss.llm.openai.openai_llm import OpenAILLM
 
@@ -24,6 +27,11 @@ class ModelFactory:
             return HuggingFaceHubGPT2LLM(api_key=api_key)
         if name.lower().startswith("hf-falcon"):
             return HuggingFaceHubFalconLLM(api_key=api_key)
-        elif name == FAKE_LLM_NAME:
+        if name == FAKE_LLM_NAME:
             return FakeLLM()
+        if name.lower().startswith("hf-inference-endpoint/"):
+            endpoint_url = name.split("/", maxsplit=1)[1]
+            return HuggingFaceInferenceEndpointLLM(
+                api_key=api_key, endpoint_url=endpoint_url
+            )
         return None
