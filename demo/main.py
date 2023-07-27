@@ -11,12 +11,13 @@ import openai
 import streamlit as st
 
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
+from demo.constants.paths import ROOT_FOLDER
 
 st.set_page_config(
     "Genoss Demo",
     layout="wide",
     initial_sidebar_state="expanded",
-    page_icon="🐂",
+    page_icon=str(ROOT_FOLDER / "doc/assets/logo.png"),
 )
 
 
