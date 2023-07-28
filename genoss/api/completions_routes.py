@@ -38,4 +38,4 @@ async def post_chat_completions(
     )
 
     # TODO: Add temperature to request body
-    return model.generate_answer(body.messages[-1].content)
+    return model.generate_answer(body.messages)

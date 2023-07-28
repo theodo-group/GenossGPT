@@ -1,15 +1,5 @@
-"""Streamlit app for Genoss demo.
-
-Start from project root with :
-```bash
-PYTHONPATH=. streamlit run demo/main.py
-```
-Don't forget to set .env variables before running the app.
-"""
-
 import openai
 import streamlit as st
-
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
 from demo.constants.paths import ROOT_FOLDER
 
@@ -20,7 +10,6 @@ st.set_page_config(
     page_icon=str(ROOT_FOLDER / "doc/assets/logo.png"),
 )
 
-
 with st.sidebar:
     selected_model: ModelConfig = st.selectbox(
         "Chat API Endpoint",
@@ -30,14 +19,17 @@ with st.sidebar:
     )
     selected_model.configure_open_ai_module()
 
-
 st.title("🐂🌈 Genoss")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "assistant", "content": "How can I help you?"}
+        {
+            "role": "system",
+            "content": "You are a friendly chatbot called GenossGPT made by the builders of Quivr.app. Answer all questions to the best of your ability. If you don't know the answer, just say that you don't know, don't try to make up an answer",
+        },
+        {"role": "assistant", "content": "How can I help you?"},
     ]
 
-for msg in st.session_state.messages:
+for msg in st.session_state.messages[1:]:  # Skip the system message when displaying
     st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():
