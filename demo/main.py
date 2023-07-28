@@ -8,6 +8,7 @@ Don't forget to set .env variables before running the app.
 
 import openai
 import streamlit as st
+
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
 from demo.constants.paths import ROOT_FOLDER
 from demo.widgets.genoss_backend_connection import (
@@ -44,7 +45,10 @@ if "messages" not in st.session_state:
         {"role": "assistant", "content": "How can I help you?"},
     ]
 
-for msg in st.session_state.messages[1:]:  # Skip the system message when displaying
+for msg in st.session_state.messages:
+    if msg["role"] == "system":
+        st.markdown(f"System: *{msg['content']}*")
+        continue
     st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():

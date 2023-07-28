@@ -22,16 +22,16 @@ class OpenAILLM(BaseGenossLLM):
     model_name: str = Field("gpt-3.5-turbo", description="OpenAI model name")
     api_key: str
 
-    def _parseMessagesAsChatMessage(self, messages: list[Message]) -> list[BaseMessage]:
-        new_messages: list[BaseMessage] = []
-        for message in messages:
-            new_messages.append(ChatMessage(content=message.content, role=message.role))
-        return new_messages
+    def _parse_messages_as_chatmessages(self, messages: list[Message]) -> list[BaseMessage]:
+        return [
+            ChatMessage(content=message.content, role=message.role)
+            for message in messages
+        ]
 
     def generate_answer(self, messages: list[Message]) -> dict[str, Any]:
         llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.api_key)
 
-        chatMessages = self._parseMessagesAsChatMessage(messages)
+        chatMessages = self._parse_messages_as_chatmessages(messages)
         response = llm(chatMessages)
 
         question = messages[-1].content
