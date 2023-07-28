@@ -3,13 +3,15 @@ from typing import Any
 
 from pydantic import BaseModel
 
+from genoss.entities.chat.message import Message
+
 
 class BaseGenossLLM(BaseModel):
     name: str
     description: str
 
     @abstractmethod
-    def generate_answer(self, prompt: str) -> dict[str, Any]:
+    def generate_answer(self, messages: list[Message]) -> dict[str, Any]:
         pass
 
     @abstractmethod

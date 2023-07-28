@@ -24,26 +24,35 @@ st.set_page_config(
     page_icon=str(ROOT_FOLDER / "doc/assets/logo.png"),
 )
 
+st.title("🐂🌈 Genoss")
+
 with st.sidebar:
     display_message_if_failing_to_access_genoss()
     add_custom_hf_endpoint_if_available_or_display_warning()
 
-    selected_model: ModelConfig = st.selectbox(
+    selected_model = st.selectbox(
         "Chat API Endpoint",
         options=AVAILABLE_MODELS,
         index=0,
         format_func=lambda model: model.display_name,
     )
-    selected_model.configure_open_ai_module()
+    print(selected_model)
+    # selected_model.configure_open_ai_module()
 
 
-st.title("🐂🌈 Genoss")
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "assistant", "content": "How can I help you?"}
+        {
+            "role": "system",
+            "content": "You are a friendly chatbot made by the builders of Quivr.app. Answer all questions to the best of your ability. If you don't know the answer, just say that you don't know, don't try to make up an answer",
+        },
+        {"role": "assistant", "content": "How can I help you?"},
     ]
 
 for msg in st.session_state.messages:
+    if msg["role"] == "system":
+        st.markdown(f"System Prompt: *{msg['content']}*")
+        continue
     st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():
