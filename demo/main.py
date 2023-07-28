@@ -10,6 +10,10 @@ import openai
 import streamlit as st
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
 from demo.constants.paths import ROOT_FOLDER
+from demo.widgets.genoss_backend_connection import (
+    add_custom_hf_endpoint_if_available_or_display_warning,
+    display_message_if_failing_to_access_genoss,
+)
 
 st.set_page_config(
     "Genoss Demo",
@@ -19,6 +23,9 @@ st.set_page_config(
 )
 
 with st.sidebar:
+    display_message_if_failing_to_access_genoss()
+    add_custom_hf_endpoint_if_available_or_display_warning()
+
     selected_model: ModelConfig = st.selectbox(
         "Chat API Endpoint",
         options=AVAILABLE_MODELS,

@@ -1979,6 +1979,7 @@ files = [
 ]
 
 [package.dependencies]
+python-dotenv = {version = ">=0.10.4", optional = true, markers = "extra == \"dotenv\""}
 typing-extensions = ">=4.2.0"
 
 [package.extras]
@@ -3730,4 +3731,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f123308302a6d55661172aef4ae04a488a15c8d7a6136d47ecb2bacdd404f6ab"
+content-hash = "88e4c6f0e3ba9b6ce10fd5d9bb3504ef756e0692de49fc6d0f2c99ed50b69fc1"
