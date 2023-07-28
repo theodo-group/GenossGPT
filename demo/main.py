@@ -1,3 +1,11 @@
+"""Streamlit app for Genoss demo.
+Start from project root with :
+```bash
+PYTHONPATH=. streamlit run demo/main.py
+```
+Don't forget to set .env variables before running the app.
+"""
+
 import openai
 import streamlit as st
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
