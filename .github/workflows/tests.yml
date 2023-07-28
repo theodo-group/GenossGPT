@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         quality-command:
-          - black
+          - black_isort
           - ruff
           - mypy
     steps:
