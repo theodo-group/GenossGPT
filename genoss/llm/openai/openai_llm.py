@@ -23,7 +23,7 @@ class OpenAILLM(BaseGenossLLM):
     api_key: str
 
     def _parseMessagesAsChatMessage(self, messages: list[Message]) -> list[BaseMessage]:
-        new_messages = []
+        new_messages: list[BaseMessage] = []
         for message in messages:
             new_messages.append(ChatMessage(content=message.content, role=message.role))
         return new_messages
