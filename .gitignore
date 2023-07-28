@@ -20,3 +20,4 @@ __pycache__/
 
 # Ignore env from demo
 demo/.env
+.env
