@@ -20,7 +20,7 @@ class Settings(BaseSettings):
 
     huggingfacehub_api_token: SecretStr
     openai_api_key: SecretStr
-    custom_hf_endpoint_url: HttpUrl
+    custom_hf_endpoint_url: HttpUrl | None = None
     genoss_endpoint_url: str = "http://localhost:4321"
 
     def ping_genoss_backend(self) -> None:

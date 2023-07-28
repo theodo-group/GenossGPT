@@ -40,10 +40,4 @@ AVAILABLE_MODELS = [
         api_key=SETTINGS.huggingfacehub_api_token,
         endpoint_url=SETTINGS.genoss_endpoint_url,
     ),
-    ModelConfig(
-        display_name="hf-custom/llama",
-        model_name=f"hf-inference-endpoint/{SETTINGS.custom_hf_endpoint_url}",
-        api_key=SETTINGS.huggingfacehub_api_token,
-        endpoint_url=SETTINGS.genoss_endpoint_url,
-    ),
 ]
