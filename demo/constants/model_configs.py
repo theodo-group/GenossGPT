@@ -19,7 +19,7 @@ AVAILABLE_MODELS = [
     ModelConfig(
         display_name="OpenAI-GPT-4",
         model_name="gpt-4",
-        api_key=SETTINGS.genoss_openai_api_key,
+        api_key=SETTINGS.openai_api_key,
         endpoint_url=openai.api_base,
     ),
     ModelConfig(
