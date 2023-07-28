@@ -1,15 +1,17 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from langchain import LLMChain
 from langchain.embeddings import GPT4AllEmbeddings
 from langchain.llms import GPT4All
 
 from genoss.entities.chat.chat_completion import ChatCompletion
-from genoss.entities.chat.message import Message
 from genoss.llm.local.base_local import BaseLocalLLM
 from genoss.prompts.prompt_template import prompt_template
+
+if TYPE_CHECKING:
+    from genoss.entities.chat.message import Message
 
 
 class Gpt4AllLLM(BaseLocalLLM):
