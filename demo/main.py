@@ -24,19 +24,22 @@ st.set_page_config(
     page_icon=str(ROOT_FOLDER / "doc/assets/logo.png"),
 )
 
+st.title("🐂🌈 Genoss")
+
 with st.sidebar:
     display_message_if_failing_to_access_genoss()
     add_custom_hf_endpoint_if_available_or_display_warning()
 
-    selected_model: ModelConfig = st.selectbox(
+    selected_model = st.selectbox(
         "Chat API Endpoint",
         options=AVAILABLE_MODELS,
         index=0,
         format_func=lambda model: model.display_name,
     )
-    selected_model.configure_open_ai_module()
+    print(selected_model)
+    # selected_model.configure_open_ai_module()
 
-st.title("🐂🌈 Genoss")
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {
