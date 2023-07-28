@@ -72,7 +72,7 @@ make test
 
 ## Formatting and static analysis
 
-### Code formatting with `black`
+### Code formatting with `black` and `isort`
 
 To check code formatting, run `black` with:
 ```bash
@@ -80,11 +80,12 @@ black . --check
 ```
 or
 ```bash
-make black
+make black_isort
 ```
 
 You can also [integrate it to your IDE](https://black.readthedocs.io/en/stable/integrations/editors.html) to reformat
 your code each time you save a file.
+Isort which handles imports formatting can be run in the same way.
 
 ### Static analysis with `ruff`
 

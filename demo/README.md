@@ -1,15 +1,17 @@
+## Usage
+Run this from your GenossGPT directory.
 ### Installing
 
 ```bash
 poetry install --only streamlit-demo
 ```
 
-Optional: Rename `.env.example` to `.env` and fill in the values.
+Optional: Rename `demo/.env.example` to `demo/.env` and fill in the values.
 
 ### Running
 
 ```bash
-streamlit run main.py
+PYTHONPATH=. streamlit run demo/main.py
 ```
 
 ### Usage
