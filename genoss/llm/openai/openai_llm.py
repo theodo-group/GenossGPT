@@ -1,15 +1,19 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.schema import BaseMessage, ChatMessage
+from langchain.schema import ChatMessage
 from pydantic import Field
 
 from genoss.entities.chat.chat_completion import ChatCompletion
-from genoss.entities.chat.message import Message
 from genoss.llm.base_genoss import BaseGenossLLM
+
+if TYPE_CHECKING:
+    from langchain.schema import BaseMessage
+
+    from genoss.entities.chat.message import Message
 
 
 class OpenAILLM(BaseGenossLLM):
