@@ -1,3 +1,4 @@
+import requests
 from pydantic import BaseSettings, HttpUrl, SecretStr
 
 from demo.constants.paths import ROOT_FOLDER
@@ -21,6 +22,11 @@ class Settings(BaseSettings):
     openai_api_key: SecretStr
     custom_hf_endpoint_url: HttpUrl
     genoss_endpoint_url: str = "http://localhost:4321"
+
+    def ping_genoss_backend(self) -> None:
+        """Ping Genoss to check that the endpoint is working."""
+        response = requests.get(self.genoss_endpoint_url)
+        response.raise_for_status()
 
 
 SETTINGS = Settings()

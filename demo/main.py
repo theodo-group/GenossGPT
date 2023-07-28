@@ -12,6 +12,9 @@ import streamlit as st
 
 from demo.constants.model_configs import AVAILABLE_MODELS, ModelConfig
 from demo.constants.paths import ROOT_FOLDER
+from demo.widgets.genoss_backend_connection import (
+    display_message_if_failing_to_access_genoss,
+)
 
 st.set_page_config(
     "Genoss Demo",
@@ -20,6 +23,7 @@ st.set_page_config(
     page_icon=str(ROOT_FOLDER / "doc/assets/logo.png"),
 )
 
+display_message_if_failing_to_access_genoss()
 
 with st.sidebar:
     selected_model: ModelConfig = st.selectbox(
