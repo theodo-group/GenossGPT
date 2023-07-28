@@ -9,3 +9,6 @@ services:
       - 4321:4321
     volumes:
       - ./:/app
+    environment:
+      - UVICORN_RELOAD=${UVICORN_RELOAD:-0}
+      - UVICORN_LOG_LEVEL=${UVICORN_LOG_LEVEL:-info}

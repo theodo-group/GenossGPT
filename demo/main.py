@@ -1,4 +1,5 @@
 """Streamlit app for Genoss demo.
+
 Start from project root with :
 ```bash
 PYTHONPATH=. streamlit run demo/main.py
@@ -40,14 +41,14 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {
             "role": "system",
-            "content": "You are a friendly chatbot called GenossGPT made by the builders of Quivr.app. Answer all questions to the best of your ability. If you don't know the answer, just say that you don't know, don't try to make up an answer",
+            "content": "You are a friendly chatbot made by the builders of Quivr.app. Answer all questions to the best of your ability. If you don't know the answer, just say that you don't know, don't try to make up an answer",
         },
         {"role": "assistant", "content": "How can I help you?"},
     ]
 
 for msg in st.session_state.messages:
     if msg["role"] == "system":
-        st.markdown(f"System: *{msg['content']}*")
+        st.markdown(f"System Prompt: *{msg['content']}*")
         continue
     st.chat_message(msg["role"]).write(msg["content"])
 

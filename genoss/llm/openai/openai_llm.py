@@ -22,7 +22,9 @@ class OpenAILLM(BaseGenossLLM):
     model_name: str = Field("gpt-3.5-turbo", description="OpenAI model name")
     api_key: str
 
-    def _parse_messages_as_chatmessages(self, messages: list[Message]) -> list[BaseMessage]:
+    def _parse_messages_as_chatmessages(
+        self, messages: list[Message]
+    ) -> list[BaseMessage]:
         return [
             ChatMessage(content=message.content, role=message.role)
             for message in messages
