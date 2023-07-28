@@ -1,5 +1,6 @@
 import requests
 from pydantic import BaseSettings, HttpUrl, SecretStr
+from pydantic.env_settings import SettingsSourceCallable
 
 from demo.constants.paths import ROOT_FOLDER
 
@@ -17,6 +18,17 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ROOT_FOLDER / "demo" / ".env"
+
+        @classmethod
+        def customise_sources(
+            cls,
+            init_settings: SettingsSourceCallable,
+            env_settings: SettingsSourceCallable,
+            file_secret_settings: SettingsSourceCallable,
+        ) -> tuple[SettingsSourceCallable, ...]:
+            # Ignore secrets settings as
+            # we ran into issues in the past with bad token being set.
+            return init_settings, env_settings
 
     huggingfacehub_api_token: SecretStr
     openai_api_key: SecretStr
