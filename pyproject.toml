@@ -55,7 +55,9 @@ skip_empty = true
 fail_under = 50.00
 precision = 1
 
-## black
+## prettier
+[tool.isort]
+profile = "black"
 
 [tool.black]
 target-version = ['py311']
@@ -95,6 +97,7 @@ ignore = [
     "D101",
     "D102",
     "D103",
+    "D104",
     "D106",
     "D107",
 ]

@@ -5,6 +5,8 @@ from typing import Any
 from genoss.entities.chat.message import Message
 
 
+# TODO: why is this nested classes ?
+# TODO: why don't we use a pydantic ?
 class ChatCompletion:
     class Choice:
         def __init__(

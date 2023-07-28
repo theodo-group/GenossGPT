@@ -16,20 +16,10 @@ class OpenAILLM(BaseGenossLLM):
     name: str = "openai"
     description: str = "OpenAI LLM"
     model_name: str = Field("gpt-3.5-turbo", description="OpenAI model name")
-    openai_api_key: str | None = Field(None)
-
-    def __init__(self, model_name: str, api_key: str | None, *args: Any, **kwargs: Any):
-        super().__init__(*args, **kwargs)
-
-        if api_key is None:
-            raise ValueError("API key missing")
-
-        self.openai_api_key = api_key
-        self.model_name = model_name
+    api_key: str
 
     def generate_answer(self, question: str) -> dict[str, Any]:
-
-        llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.openai_api_key)
+        llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.api_key)
 
         llm_chain = LLMChain(llm=llm, prompt=prompt_template)
         response_text = llm_chain(question)
