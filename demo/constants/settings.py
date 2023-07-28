@@ -42,3 +42,6 @@ class Settings(BaseSettings):
 
 
 SETTINGS = Settings()
+
+print(SETTINGS.genoss_openai_api_key.get_secret_value())
+print(os.environ.get("OPENAI_API_KEY"))
