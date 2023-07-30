@@ -5,7 +5,8 @@ from pydantic import BaseModel
 from genoss.auth.auth_handler import AuthHandler
 from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.entities.chat.message import Message
-from genoss.services.model_factory import ModelFactory
+from genoss.services.chat_completion_registry import chat_completion_registry
+from genoss.services.model_routing_helpers import InvalidRouteParameters, RouteNotFound
 from logger import get_logger
 
 logger = get_logger(__name__)
@@ -27,10 +28,16 @@ async def post_chat_completions(
         AuthHandler.check_auth_header, use_cache=False
     ),
 ) -> ChatCompletion:
-    model = ModelFactory.get_model_from_name(body.model, api_key)  # pyright: ignore
-
-    if model is None:
-        raise HTTPException(status_code=404, detail="Model not found")
+    try:
+        model = chat_completion_registry.build_model(
+            path=body.model, call_params={"api_key": api_key}
+        )
+    except RouteNotFound as exception:
+        logger.exception(f"/chat/completion/ model not found for {body.model}")
+        raise HTTPException(status_code=404, detail="Model not found") from exception
+    except InvalidRouteParameters as exception:
+        logger.exception(f"/chat/completion/ model could not be build for {body.model}")
+        raise HTTPException(status_code=404, detail="Model not found") from exception
 
     logger.info(
         f"Received chat completions request for {model.name} with messages {body.messages[-1].content}"
