@@ -4,7 +4,7 @@ from genoss.llm.base_genoss import BaseGenossLLM
 from genoss.llm.fake_llm import FAKE_LLM_NAME, FakeLLM
 from genoss.llm.hf_hub.base_hf_hub import BaseHuggingFaceHubLLM
 from genoss.llm.local.gpt4all import Gpt4AllLLM
-from genoss.llm.openai.openai_llm import OpenAILLM
+from genoss.llm.openai_llm.openai_llm import OpenAILLM
 from genoss.services.chat_completion_registry import chat_completion_registry
 
 
