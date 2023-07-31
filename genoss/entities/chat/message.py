@@ -1,10 +1,12 @@
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
+MessageRole = Literal["system", "user", "assistant", "function"]
+
 
 class Message(BaseModel):
-    role: str = Field(
+    role: MessageRole = Field(
         ...,
         description="The role of the messages author. One of system, user, assistant, or function.",
     )
