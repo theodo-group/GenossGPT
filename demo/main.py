@@ -30,14 +30,13 @@ with st.sidebar:
     display_message_if_failing_to_access_genoss()
     add_custom_hf_endpoint_if_available_or_display_warning()
 
-    selected_model = st.selectbox(
+    selected_model: ModelConfig = st.selectbox(
         "Chat API Endpoint",
         options=AVAILABLE_MODELS,
         index=0,
         format_func=lambda model: model.display_name,
     )
-    print(selected_model)
-    # selected_model.configure_open_ai_module()
+    selected_model.configure_open_ai_module()
 
 
 if "messages" not in st.session_state:
