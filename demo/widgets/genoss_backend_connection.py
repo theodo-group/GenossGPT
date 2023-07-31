@@ -15,6 +15,8 @@ def display_message_if_failing_to_access_genoss() -> None:
         )
 
 
+# Fix bug where the custom endpoint will be added at every rerun
+@st.cache_data(experimental_allow_widgets=True)
 def add_custom_hf_endpoint_if_available_or_display_warning() -> None:
     if SETTINGS.custom_hf_endpoint_url is None:
         st.warning(

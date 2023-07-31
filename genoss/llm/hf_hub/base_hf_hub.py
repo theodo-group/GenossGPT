@@ -1,12 +1,10 @@
 from abc import ABC
-from typing import Any
 
-from langchain import HuggingFaceHub, LLMChain
+from langchain import HuggingFaceHub
 
 from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.entities.chat.message import Message
 from genoss.llm.base_genoss import BaseGenossLLM
-from genoss.prompts.prompt_template import prompt_template
 
 
 class BaseHuggingFaceHubLLM(BaseGenossLLM, ABC):
@@ -16,23 +14,12 @@ class BaseHuggingFaceHubLLM(BaseGenossLLM, ABC):
     api_key: str | None = None
     repo_id: str
 
-    def generate_answer(self, messages: list[Message]) -> dict[str, Any]:
+    def generate_answer(self, messages: list[Message]) -> ChatCompletion:
         """Generate answer from prompt."""
         llm = HuggingFaceHub(
             repo_id=self.repo_id, huggingfacehub_api_token=self.api_key
         )
-        llm_chain = LLMChain(prompt=prompt_template, llm=llm)
-
-        question = messages[-1].content
-        response_text = llm_chain(question)
-
-        answer = response_text["text"]
-
-        chat_completion = ChatCompletion(
-            model=self.name, question=question, answer=answer
-        )
-
-        return chat_completion.to_dict()
+        return self._chat_completion_from_langchain_llm(llm=llm, messages=messages)
 
     def generate_embedding(self, text: str) -> list[float]:
         """Dummy method to satisfy base class requirement."""

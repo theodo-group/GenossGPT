@@ -6,7 +6,7 @@ from genoss.llm.hf_hub.falcon import HuggingFaceHubFalconLLM
 from genoss.llm.hf_hub.gpt2 import HuggingFaceHubGPT2LLM
 from genoss.llm.hf_hub.llama2 import HuggingFaceHubLlama2LLM
 from genoss.llm.local.gpt4all import Gpt4AllLLM
-from genoss.llm.openai.openai_llm import OpenAILLM
+from genoss.llm.openai_llm.openai_llm import OpenAILLM
 from genoss.services.model_factory import ModelFactory
 
 

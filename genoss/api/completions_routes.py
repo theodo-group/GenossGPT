@@ -1,10 +1,9 @@
-from typing import Any
-
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.params import Depends
 from pydantic import BaseModel
 
 from genoss.auth.auth_handler import AuthHandler
+from genoss.entities.chat.chat_completion import ChatCompletion
 from genoss.entities.chat.message import Message
 from genoss.services.model_factory import ModelFactory
 from logger import get_logger
@@ -27,7 +26,7 @@ async def post_chat_completions(
     api_key: str = Depends(  # type: ignore[assignment] # noqa: B008
         AuthHandler.check_auth_header, use_cache=False
     ),
-) -> dict[str, Any]:
+) -> ChatCompletion:
     model = ModelFactory.get_model_from_name(body.model, api_key)  # pyright: ignore
 
     if model is None:
