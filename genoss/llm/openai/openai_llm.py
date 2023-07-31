@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
@@ -30,7 +30,7 @@ class OpenAILLM(BaseGenossLLM):
             for message in messages
         ]
 
-    def generate_answer(self, messages: list[Message]) -> dict[str, Any]:
+    def generate_answer(self, messages: list[Message]) -> ChatCompletion:
         llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.api_key)
 
         chatMessages = self._parse_messages_as_chatmessages(messages)
@@ -39,11 +39,9 @@ class OpenAILLM(BaseGenossLLM):
         question = messages[-1].content
         answer = response.content
 
-        chat_completion = ChatCompletion(
+        return ChatCompletion.from_model_question_answer(
             model=self.name, answer=answer, question=question
         )
-
-        return chat_completion.to_dict()
 
     def generate_embedding(self, text: str) -> list[float]:
         model = OpenAIEmbeddings()
