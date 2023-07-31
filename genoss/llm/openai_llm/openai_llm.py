@@ -33,8 +33,8 @@ class OpenAILLM(BaseGenossLLM):
     def generate_answer(self, messages: list[Message]) -> ChatCompletion:
         llm = ChatOpenAI(model_name=self.model_name, openai_api_key=self.api_key)
 
-        chatMessages = self._parse_messages_as_chatmessages(messages)
-        response = llm(chatMessages)
+        chat_messages = self._parse_messages_as_chatmessages(messages)
+        response = llm(chat_messages)
 
         question = messages[-1].content
         answer = response.content
