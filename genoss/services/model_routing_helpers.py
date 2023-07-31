@@ -41,7 +41,11 @@ class AbstractRoute(ABC):
     """
 
     @abstractmethod
-    def matches(self, route: str) -> tuple[Match, RouteParams]:
+    def matches(self, path: str) -> tuple[Match, RouteParams]:
+        """Check if the provided path should be handled by this route.
+
+        Return the type of Match and the params found in the route.
+        """
         raise NotImplementedError()
 
     @abstractmethod
@@ -75,6 +79,11 @@ class StandardModelRoute(AbstractRoute, Generic[ModelT], BaseModel):
         additional_params: RouteParams | None = None,
         call_params_keys: set[str] | None = None,
     ) -> "StandardModelRoute[ModelT]":
+        """Create a route for a specific model.
+
+        This is the reference builder.
+        Handle creating the different params from the path.
+        """
         if additional_params is None:
             additional_params = {}
         if call_params_keys is None:
@@ -92,6 +101,8 @@ class StandardModelRoute(AbstractRoute, Generic[ModelT], BaseModel):
 
     @root_validator(skip_on_failure=True)
     def validate_route(cls, values: dict[str, Any]) -> dict[str, Any]:
+        """Validate that the route parameters are valid for the model."""
+        # TODO: check that again to had route_params, call_params and additional_params
         available_params_at_handle = set(values["converters"].keys()) | set(
             values["additional_params"].keys()
         )
@@ -116,7 +127,17 @@ class StandardModelRoute(AbstractRoute, Generic[ModelT], BaseModel):
         return values
 
     def matches(self, path: str) -> tuple[Match, RouteParams]:
+        """Check if the provided path should be handled by this route.
+
+        This is based on the regex created from the path.
+        For example, openai/{model_name:str} should :
+        - match openai/gpt-3.5-turbo
+          with a return value of (Match.FULL, {"model_name": "gpt-3.5-turbo"})
+        - not match hf-local/gpt-2
+          with a return value of (Match.NONE, {})
+        """
         # See later to implement partial routing
+        # If we have Router of Router for example
         match = self.regex.match(path)
         if match is None:
             return Match.NONE, {}
@@ -222,5 +243,4 @@ class ModelRouter(Generic[ModelT], BaseModel):
             match, route_params = route.matches(path)
             if match is Match.FULL:
                 return route.handle(call_params, route_params)
-        # TODO: better error type
         raise RouteNotFound(f"No model found for path: {path}")
