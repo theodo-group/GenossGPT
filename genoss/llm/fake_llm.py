@@ -1,15 +1,9 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
 from langchain.embeddings import FakeEmbeddings
 from langchain.llms import FakeListLLM
 
+from genoss.entities.chat.chat_completion import ChatCompletion
+from genoss.entities.chat.message import Message
 from genoss.llm.base_genoss import BaseGenossLLM
-
-if TYPE_CHECKING:
-    from genoss.entities.chat.chat_completion import ChatCompletion
-    from genoss.entities.chat.message import Message
 
 FAKE_LLM_NAME = "fake"
 

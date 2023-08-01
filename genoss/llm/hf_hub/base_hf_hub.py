@@ -1,5 +1,3 @@
-from abc import ABC
-
 from langchain import HuggingFaceHub
 
 from genoss.entities.chat.chat_completion import ChatCompletion
@@ -7,10 +5,11 @@ from genoss.entities.chat.message import Message
 from genoss.llm.base_genoss import BaseGenossLLM
 
 
-class BaseHuggingFaceHubLLM(BaseGenossLLM, ABC):
+class BaseHuggingFaceHubLLM(BaseGenossLLM):
     """Class for interacting with Hugging Face Inference APIs."""
 
-    # Sub classes must define these
+    name: str = "HuggingFaceHubLLM"
+    description: str = "Hugging Face Hub Inference API"
     api_key: str | None = None
     repo_id: str
 
