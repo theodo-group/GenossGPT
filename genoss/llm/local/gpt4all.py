@@ -8,7 +8,7 @@ from genoss.llm.local.base_local import BaseLocalLLM
 
 class Gpt4AllLLM(BaseLocalLLM):
     name: str = "gpt4all"
-    description: str = "GPT-4"
+    description: str = "GPT4ALL"
     model_path: str = "./local_models/ggml-gpt4all-j-v1.3-groovy.bin"
 
     def generate_answer(self, messages: list[Message]) -> ChatCompletion:

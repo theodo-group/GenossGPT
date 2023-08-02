@@ -35,6 +35,12 @@ AVAILABLE_MODELS = [
         endpoint_url=SETTINGS.genoss_endpoint_url,
     ),
     ModelConfig(
+        display_name="local-gpt4all",
+        model_name="gpt4all",
+        api_key=SETTINGS.openai_api_key,
+        endpoint_url=SETTINGS.genoss_endpoint_url,
+    ),
+    ModelConfig(
         display_name="hf-llama2",
         model_name="hf-hub/meta-llama/Llama-2-7b",
         api_key=SETTINGS.huggingfacehub_api_token,
