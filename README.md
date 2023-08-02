@@ -139,9 +139,23 @@ The vision:
 
  ![Screenshot of vision diagram](doc/assets/2023-07-19-23-54-47.png)
 
+## History
+
+Genoss was imagined by [Stan Girard](https://github.com/StanGirard) when a feature of [Quivr](https://github.com/StanGirard/quivr) became too big and complicated to maintain. 
+
+The idea was to create a simple API that would allow to use any model with the same API as OpenAI's ChatGPT API. 
+
+Then @[mattzcarey](https://github.com/mattzcarey), @[MaximeThoonsen](https://github.com/MaximeThoonsen), @[Wirg](https://github.com/Wirg) and @[StanGirard](https://github.com/StanGirard) started working on the project and it became a reality.
+
 ## Contributions
 
 Your contributions to Genoss are immensely appreciated! Feel free to submit any issues or pull requests.
+
+Thanks go to these wonderful people:
+
+<a href="https://github.com/opengenerativeai/genossGPT/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=opengenerativeai/genossGPT" />
+</a>
 
 ## Sponsors ❤️
 
