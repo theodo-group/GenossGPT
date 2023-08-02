@@ -95,6 +95,20 @@ uvicorn main:app --host 0.0.0.0 --port 4321
 
 This command launches the Genoss application on port 4321 of your machine.
 
+## Running the Webapp Demo
+
+In the `demo/` 
+
+```bash
+cp .env.example .env
+```
+
+Replace the values and then
+
+```bash
+PYTHONPATH=. streamlit run demo/main.py 
+```
+
 ## Genoss API Usage
 
 The Genoss API is a one-line replacement for the OpenAI ChatGPT API. It supports the same parameters and returns the same response format as the OpenAI API.
@@ -114,14 +128,14 @@ While GPT4ALL is the only model currently supported, we are planning to add more
 
 The vision:
 
-- Allow LLM models to be ran locally
-- Allow LLM to be ran locally using HuggingFace
-- ALlow LLM to be ran on HuggingFace and just be a wrapper around the inference API.
-- Allow easy installation of LLM models locally
-- Allow users to use cloud provider solutions such as GCP, AWS, Azure, etc ...
-- Allow users management with API keys
-- Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
-- Be compatible with OpenAI API for models that are compatible with OpenAI API
+- [X] Allow LLM models to be ran locally
+- [X] Allow LLM to be ran locally using HuggingFace
+- [X] ALlow LLM to be ran on HuggingFace and just be a wrapper around the inference API.
+- [ ] Allow easy installation of LLM models locally
+- [ ] Allow users to use cloud provider solutions such as GCP, AWS, Azure, etc ...
+- [ ] Allow users management with API keys
+- [ ] Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
+- [X] Be compatible with OpenAI API for models that are compatible with OpenAI API
 
  ![Screenshot of vision diagram](doc/assets/2023-07-19-23-54-47.png)
 
