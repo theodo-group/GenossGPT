@@ -143,6 +143,20 @@ The vision:
 
 Your contributions to Genoss are immensely appreciated! Feel free to submit any issues or pull requests.
 
+## Sponsors ❤️
+
+This project could not be possible without the support of our sponsors. Thank you for your support!
+
+<a href="https://www.theodo.fr/">
+  <img src="https://avatars.githubusercontent.com/u/332041?s=200&v=4" alt="Theodo" style="padding: 10px" width="70px">
+</a>
+<a href="https://www.aleios.com/">
+  <img src="https://avatars.githubusercontent.com/u/97908131?s=200&v=4" alt="Aleios" style="padding: 10px" width="70px">
+</a>
+<a href="https://www.sicara.fr/">
+  <img src="https://avatars.githubusercontent.com/u/23194788?s=200&v=4" alt="Sicara" style="padding: 10px" width="70px">
+</a>
+
 ## License
 
 Genoss is licensed under the Apache2 License. For more details, refer to the [LICENSE](LICENSE) file.
