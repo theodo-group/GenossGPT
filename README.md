@@ -8,6 +8,8 @@
 
 Genoss is a pioneering open-source initiative that aims to offer a seamless alternative to OpenAI models such as GPT 3.5 & 4, using open-source models like GPT4ALL.
 
+Project boostraped using [Sicarator](https://github.com/sicara/sicarator)
+
 ## Features
 
 - **Open-Source**: Genoss is built on top of open-source models like GPT4ALL.
