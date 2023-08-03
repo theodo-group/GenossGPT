@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from langchain import LLMChain
+from langchain import LLMChain, PromptTemplate
 from pydantic import BaseModel
 
 from genoss.entities.chat.chat_completion import ChatCompletion
@@ -17,9 +17,14 @@ class BaseGenossLLM(BaseModel):
         pass
 
     def _chat_completion_from_langchain_llm(
-        self, llm: BaseModel, messages: list[Message]
+        self,
+        llm: BaseModel,
+        messages: list[Message],
+        prompt: PromptTemplate | None = None,
     ) -> ChatCompletion:
-        llm_chain = LLMChain(prompt=prompt_template, llm=llm)
+        if prompt is None:
+            prompt = prompt_template
+        llm_chain = LLMChain(prompt=prompt, llm=llm)
 
         question = messages[-1].content
         response_text = llm_chain(question)
