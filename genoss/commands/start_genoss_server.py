@@ -3,8 +3,6 @@ import uvicorn
 from uvicorn.config import LOGGING_CONFIG
 from uvicorn.main import LEVEL_CHOICES
 
-from genoss.default_server import app
-
 
 @click.command(context_settings={"auto_envvar_prefix": "GENOSS"})
 @click.option(
@@ -17,7 +15,7 @@ from genoss.default_server import app
 @click.option(
     "--port",
     type=int,
-    default=8000,
+    default=4321,  # Default genoss port
     help="Bind socket to this port. If 0, an available port will be picked.",
     show_default=True,
 )
@@ -126,7 +124,7 @@ def main(
     fastapi, uvicorn or other ASGI tool.
     """
     uvicorn.run(
-        app=app,
+        app="genoss.default_server:app",
         host=host,
         port=port,
         reload=reload,
