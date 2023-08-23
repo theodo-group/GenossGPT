@@ -1,11 +1,25 @@
 [tool.poetry]
-name = "genoss-gpt"
-version = "0.1.0"
+name = "genoss"
+version = "0.0.2a0"
 description = "Replace OpenAI GPT with any LLMs in your app with one line. Common Inference API for all LLMs either Private or Public (Anthropic, Llama, GPT, Vertex, ...)"
 authors = [
     "mattzcarey <mattc@aleios.com>",
     "MaximeThoonsen <maximet@theodo.fr>",
     "StanGirard <stanislasg@theodo.fr>",
+    "Wirg <datwiwi@gmail.com>",
+]
+readme = "README.md"
+homepage = "https://genoss.ai/"
+repository = "https://github.com/OpenGenerativeAI/GenossGPT"
+keywords = [
+    "server", "llm"
+]
+classifiers = [
+    "Framework :: FastAPI",
+     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+packages = [
+    { include = "genoss" },
 ]
 
 [tool.poetry.dependencies]
