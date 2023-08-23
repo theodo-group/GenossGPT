@@ -22,12 +22,16 @@ packages = [
     { include = "genoss" },
 ]
 
+[tool.poetry.scripts]
+genoss-server = "genoss.commands.start_genoss_server:main"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = {extras = ["all"], version = "^0.95.1"}
 loguru = "^0.7.0"
 uvicorn = "^0.23.1"
 pydantic = {version = "1.10.12", extras = ["dotenv"]}
+click = "^8.1.7"
 
 [tool.poetry.group.llms.dependencies]
 langchain = "^0.0.240"
