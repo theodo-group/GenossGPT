@@ -3,12 +3,12 @@
 
 
 <div align="center">
-    <img src="doc/assets/logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
+    <img src="https://raw.githubusercontent.com/OpenGenerativeAI/GenossGPT/v0.0.1/doc/assets/logo.png" alt="Genoss" width="40%"  style="border-radius: 50%; padding-bottom: 20px"/>
 </div>
 
 Genoss is a pioneering open-source initiative that aims to offer a seamless alternative to OpenAI models such as GPT 3.5 & 4, using open-source models like GPT4ALL.
 
-Project boostraped using [Sicarator](https://github.com/sicara/sicarator)
+Project bootstrapped using [Sicarator](https://github.com/sicara/sicarator)
 
 ## Features
 
@@ -33,6 +33,29 @@ https://github.com/OpenGenenerativeAI/GenossGPT/assets/19614572/9cfd4f69-6396-48
 ## Starting Up
 
 Before you embark, ensure Python 3.11 or higher is installed on your machine.
+
+### Install the server
+#### Using pip (RECOMMENDED)
+:warning: we are currently in prepublish.
+
+```shell
+pip install genoss
+```
+
+#### Install the latest version from this repository
+```shell
+pip install git+https://github.com/OpenGenerativeAI/GenossGPT.git@main\#egg\=genoss
+```
+
+#### Run the server
+
+```shell
+genoss-server
+# To know more
+genoss-server --help
+```
+
+Access the api docs via http://localhost:4321/docs .
 
 ## Models Installation
 
@@ -99,7 +122,7 @@ This command launches the Genoss application on port 4321 of your machine.
 
 ## Running the Webapp Demo
 
-In the `demo/` 
+In the `demo/`
 
 ```bash
 cp .env.example .env
@@ -108,7 +131,7 @@ cp .env.example .env
 Replace the values and then
 
 ```bash
-PYTHONPATH=. streamlit run demo/main.py 
+PYTHONPATH=. streamlit run demo/main.py
 ```
 
 ## Genoss API Usage
@@ -121,7 +144,7 @@ Modify the models to the supported list of models and you're good to go!
 
 You can find the API documentation at `/docs` or `/redoc`.
 
-![Screenshot of api documentation](doc/assets/2023-07-17-23-46-34.png)
+![Screenshot of api documentation](https://raw.githubusercontent.com/OpenGenerativeAI/GenossGPT/v0.0.1/doc/assets/2023-07-17-23-46-34.png)
 
 
 ## Upcoming Developments
@@ -139,13 +162,13 @@ The vision:
 - [ ] Have all kinds of models available for use (text to text, text to image, text to audio, audio to text, etc.)
 - [X] Be compatible with OpenAI API for models that are compatible with OpenAI API
 
- ![Screenshot of vision diagram](doc/assets/2023-07-19-23-54-47.png)
+![Screenshot of vision diagram](https://raw.githubusercontent.com/OpenGenerativeAI/GenossGPT/v0.0.1/doc/assets/2023-07-19-23-54-47.png)
 
 ## History
 
-Genoss was imagined by [Stan Girard](https://github.com/StanGirard) when a feature of [Quivr](https://github.com/StanGirard/quivr) became too big and complicated to maintain. 
+Genoss was imagined by [Stan Girard](https://github.com/StanGirard) when a feature of [Quivr](https://github.com/StanGirard/quivr) became too big and complicated to maintain.
 
-The idea was to create a simple API that would allow to use any model with the same API as OpenAI's ChatGPT API. 
+The idea was to create a simple API that would allow to use any model with the same API as OpenAI's ChatGPT API.
 
 Then @[mattzcarey](https://github.com/mattzcarey), @[MaximeThoonsen](https://github.com/MaximeThoonsen), @[Wirg](https://github.com/Wirg) and @[StanGirard](https://github.com/StanGirard) started working on the project and it became a reality.
 
